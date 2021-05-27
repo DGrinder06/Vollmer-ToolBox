@@ -63,28 +63,6 @@ namespace Vollmer_ToolBox
             rightTriangle1.BringToFront();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            SidePanel.Height = button3.Height;
-            SidePanel.Top = button3.Top;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            SidePanel.Height = button4.Height;
-            SidePanel.Top = button4.Top;
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            SidePanel.Height = button5.Height;
-            SidePanel.Top = button5.Top;
-        }
-        private void button6_Click(object sender, EventArgs e)
-        {
-            SidePanel.Height = button6.Height;
-            SidePanel.Top = button6.Top;
-        }
 
         private void dressingSpeedsCalculator1_Load_1(object sender, EventArgs e)
         {
@@ -126,6 +104,11 @@ namespace Vollmer_ToolBox
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void rightTriangle1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

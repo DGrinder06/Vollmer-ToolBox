@@ -21,8 +21,7 @@ namespace Vollmer_ToolBox
         public DressingSpeedsCalculator()
         {
             InitializeComponent();
-            comboBox1.SelectedIndex = 0;
-            
+                        
         }
 
        
