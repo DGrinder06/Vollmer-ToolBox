@@ -44,7 +44,10 @@ namespace Vollmer_ToolBox
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-           
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+            textBox3.Text = string.Empty;
+            textBox4.Text = string.Empty;
             textBox4.ReadOnly = true;
             textBox1.ReadOnly = false;
             textBox2.ReadOnly = false;
@@ -86,6 +89,10 @@ namespace Vollmer_ToolBox
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+            textBox3.Text = string.Empty;
+            textBox4.Text = string.Empty;
             textBox4.ReadOnly = false;
             textBox1.ReadOnly = false;
             textBox2.ReadOnly = true;
@@ -94,6 +101,10 @@ namespace Vollmer_ToolBox
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+            textBox3.Text = string.Empty;
+            textBox4.Text = string.Empty;
             textBox4.ReadOnly = false;
             textBox1.ReadOnly = false;
             textBox2.ReadOnly = false;
@@ -163,7 +174,7 @@ namespace Vollmer_ToolBox
 
             
         }
-        private void sin()
+        private void sin() // Function for sin selection
         {
             textBox2.ReadOnly = true;
 
@@ -185,44 +196,44 @@ namespace Vollmer_ToolBox
                 textBox3.ReadOnly = false;
                 textBox4.ReadOnly = false;
             }
-                if (textBox1.Text == "" && textBox3.Text == "" || textBox3.Text == "" && textBox4.Text == "" || textBox1.Text == "" && textBox4.Text == "")
-                {
-                    MessageBox.Show("Incomplete Data");
-                }
-
-
-                else if (textBox2.Text == "")  // Finding the Sin Angle with known legs
-                {
-                    textBox1.ReadOnly = true;
-                    textBox3.ReadOnly = false;
-                    textBox4.ReadOnly = false;
-                    legB = Convert.ToDouble(textBox3.Text);
-                    legC = Convert.ToDouble(textBox4.Text);
-                    angle = Math.Asin(legB / legC) * 180 / Math.PI;
-                    textBox1.Text = Convert.ToString(Math.Round(angle, 2));
-                }
-                else if (textBox2.Text == "") // Finding leg C with known B and angle
-                {
-                    textBox1.ReadOnly = false;
-                    textBox3.ReadOnly = false;
-                    textBox4.ReadOnly = true;
-                    angle = Convert.ToDouble(textBox1.Text);
-                    legB = Convert.ToDouble(textBox3.Text);
-                    legC = legB / Math.Sin(angle * (Math.PI / 180));
-                    textBox4.Text = Convert.ToString(Math.Round(legC, 4));
-                }
-                else if (textBox3.Text == "") // Finding leg B with known A and angle
-                {
-                    textBox1.ReadOnly = false;
-                    textBox2.ReadOnly = false;
-                    textBox3.ReadOnly = true;
-                    angle = Convert.ToDouble(textBox1.Text);
-                    legA = Convert.ToDouble(textBox2.Text);
-                    legB = legA * Math.Tan(angle * (Math.PI / 180));
-                    textBox3.Text = Convert.ToString(Math.Round(legB, 4));
-                }
-
+            if (textBox1.Text == "" && textBox3.Text == "" || textBox3.Text == "" && textBox4.Text == "" || textBox1.Text == "" && textBox4.Text == "")
+            {
+                MessageBox.Show("Incomplete Data");
             }
+
+
+            else if (textBox1.Text == "")  // Finding the Sin Angle with known legs
+            {
+                textBox1.ReadOnly = true;
+                textBox3.ReadOnly = false;
+                textBox4.ReadOnly = false;
+                legB = Convert.ToDouble(textBox3.Text);
+                legC = Convert.ToDouble(textBox4.Text);
+                angle = Math.Asin(legB / legC) * 180 / Math.PI;
+                textBox1.Text = Convert.ToString(Math.Round(angle, 2));
+            }
+            else if (textBox4.Text == "") // Finding leg C with known B and angle
+            {
+                textBox1.ReadOnly = false;
+                textBox3.ReadOnly = false;
+                textBox4.ReadOnly = true;
+                angle = Convert.ToDouble(textBox1.Text);
+                legB = Convert.ToDouble(textBox3.Text);
+                legC = legB / Math.Sin(angle * (Math.PI / 180));
+                textBox4.Text = Convert.ToString(Math.Round(legC, 4));
+            }
+            else if (textBox3.Text == "") // Finding leg B with known C and angle
+            {
+                textBox1.ReadOnly = false;
+                textBox3.ReadOnly = true;
+                textBox4.ReadOnly = false;
+                angle = Convert.ToDouble(textBox1.Text);
+                legC = Convert.ToDouble(textBox4.Text);
+                legB = legC * Math.Sin(angle * (Math.PI / 180));
+                textBox3.Text = Convert.ToString(Math.Round(legB, 4));
+            }
+
+        }   
         private void cos()
         {
             textBox1.Text = "c";            
@@ -261,18 +272,18 @@ namespace Vollmer_ToolBox
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
+
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+            textBox3.Text = string.Empty;
+            textBox4.Text = string.Empty;
             radioButton1.Checked = false;
             radioButton2.Checked = false;
             radioButton3.Checked = false;
-            textBox4.ReadOnly = false;
-            textBox1.ReadOnly = false;
-            textBox2.ReadOnly = false;
-            textBox3.ReadOnly = false;
+            textBox4.ReadOnly = true;
+            textBox1.ReadOnly = true;
+            textBox2.ReadOnly = true;
+            textBox3.ReadOnly = true;
            
         }
     }
