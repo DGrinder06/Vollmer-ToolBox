@@ -149,7 +149,10 @@ namespace Vollmer_ToolBox
                 legA = Convert.ToDouble(textBox2.Text);
                 legB = Convert.ToDouble(textBox3.Text);
                 angle = Math.Atan(legB / legA) * 180 / Math.PI;
+                legC = legA / Math.Cos(angle * (Math.PI / 180));
                 textBox1.Text = Convert.ToString(Math.Round(angle, 2));
+                textBox4.Text = Convert.ToString(Math.Round(legC, 4));
+
             }
             else if (textBox2.Text == "") // Finding leg A with known B and angle
             {
@@ -159,7 +162,9 @@ namespace Vollmer_ToolBox
                 angle = Convert.ToDouble(textBox1.Text);
                 legB = Convert.ToDouble(textBox3.Text);
                 legA = legB / Math.Tan(angle * (Math.PI / 180));
+                legC = legA / Math.Cos(angle * (Math.PI / 180));
                 textBox2.Text = Convert.ToString(Math.Round(legA, 4));
+                textBox4.Text = Convert.ToString(Math.Round(legC, 4));
             }
             else if (textBox3.Text == "") // Finding leg B with known A and angle
             {
@@ -169,7 +174,9 @@ namespace Vollmer_ToolBox
                 angle = Convert.ToDouble(textBox1.Text);
                 legA = Convert.ToDouble(textBox2.Text);
                 legB = legA * Math.Tan(angle * (Math.PI / 180));
+                legC = legA / Math.Cos(angle * (Math.PI / 180));
                 textBox3.Text = Convert.ToString(Math.Round(legB, 4));
+                textBox4.Text = Convert.ToString(Math.Round(legC, 4));
             }
 
             
@@ -210,7 +217,9 @@ namespace Vollmer_ToolBox
                 legB = Convert.ToDouble(textBox3.Text);
                 legC = Convert.ToDouble(textBox4.Text);
                 angle = Math.Asin(legB / legC) * 180 / Math.PI;
+                legA = legC * Math.Cos(angle * (Math.PI / 180));
                 textBox1.Text = Convert.ToString(Math.Round(angle, 2));
+                textBox2.Text = Convert.ToString(Math.Round(legA, 4));
             }
             else if (textBox4.Text == "") // Finding leg C with known B and angle
             {
@@ -220,7 +229,9 @@ namespace Vollmer_ToolBox
                 angle = Convert.ToDouble(textBox1.Text);
                 legB = Convert.ToDouble(textBox3.Text);
                 legC = legB / Math.Sin(angle * (Math.PI / 180));
+                legA = legC * Math.Cos(angle * (Math.PI / 180));
                 textBox4.Text = Convert.ToString(Math.Round(legC, 4));
+                textBox2.Text = Convert.ToString(Math.Round(legA, 4));
             }
             else if (textBox3.Text == "") // Finding leg B with known C and angle
             {
@@ -230,13 +241,76 @@ namespace Vollmer_ToolBox
                 angle = Convert.ToDouble(textBox1.Text);
                 legC = Convert.ToDouble(textBox4.Text);
                 legB = legC * Math.Sin(angle * (Math.PI / 180));
+                legA = legC * Math.Cos(angle * (Math.PI / 180));
                 textBox3.Text = Convert.ToString(Math.Round(legB, 4));
+                textBox2.Text = Convert.ToString(Math.Round(legA, 4));
             }
 
-        }   
+        }
         private void cos()
         {
-            textBox1.Text = "c";            
+            textBox3.ReadOnly = true;
+
+            if (textBox1.ReadOnly == true)
+            {
+                textBox1.Text = "";
+            }
+            else if (textBox2.ReadOnly == true)
+            {
+                textBox2.Text = "";
+            }
+            else if (textBox4.ReadOnly == true)
+            {
+                textBox4.Text = "";
+            }
+            else
+            {
+                textBox1.ReadOnly = false;
+                textBox2.ReadOnly = false;
+                textBox4.ReadOnly = false;
+            }
+            if (textBox1.Text == "" && textBox2.Text == "" || textBox2.Text == "" && textBox4.Text == "" || textBox1.Text == "" && textBox4.Text == "")
+            {
+                MessageBox.Show("Incomplete Data");
+            }
+
+
+            else if (textBox1.Text == "")  // Finding the Cos Angle with known legs
+            {
+                textBox1.ReadOnly = true;
+                textBox2.ReadOnly = false;
+                textBox4.ReadOnly = false;
+                legA = Convert.ToDouble(textBox2.Text);
+                legC = Convert.ToDouble(textBox4.Text);
+                angle = Math.Acos(legA / legC) * 180 / Math.PI;
+                legB = legA * Math.Tan(angle * (Math.PI / 180));
+                textBox1.Text = Convert.ToString(Math.Round(angle, 2));
+                textBox3.Text = Convert.ToString(Math.Round(legB, 4));
+            }
+            else if (textBox4.Text == "") // Finding leg C with known A and angle
+            {
+                textBox1.ReadOnly = false;
+                textBox2.ReadOnly = false;
+                textBox4.ReadOnly = true;
+                angle = Convert.ToDouble(textBox1.Text);
+                legA = Convert.ToDouble(textBox2.Text);
+                legC = legA / Math.Cos(angle * (Math.PI / 180));
+                legB = legA * Math.Tan(angle * (Math.PI / 180));
+                textBox4.Text = Convert.ToString(Math.Round(legC, 4));
+                textBox3.Text = Convert.ToString(Math.Round(legB, 4));
+            }
+            else if (textBox2.Text == "") // Finding leg A with known C and angle
+            {
+                textBox1.ReadOnly = false;
+                textBox2.ReadOnly = true;
+                textBox4.ReadOnly = false;
+                angle = Convert.ToDouble(textBox1.Text);
+                legC = Convert.ToDouble(textBox4.Text);
+                legA = legC * Math.Cos(angle * (Math.PI / 180));
+                legB = legA * Math.Tan(angle * (Math.PI / 180));
+                textBox2.Text = Convert.ToString(Math.Round(legA, 4));
+                textBox3.Text = Convert.ToString(Math.Round(legB, 4));
+            }
         }
         private void calculation()
         {
