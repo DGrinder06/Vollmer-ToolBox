@@ -172,7 +172,11 @@ namespace Vollmer_ToolBox
                     return;
                 }
 
+                if (CenterOffsetTextBox.Text == "")
+                {
 
+                    CenterOffsetTextBox.Text = "0";
+                }
 
                 // 3. Define the destination CSV file path (saves it in the same folder)
                 var points = new List<(string EntityType, double X, double Y, double Z, double Radius, double TangentAngle)>();
@@ -212,7 +216,7 @@ namespace Vollmer_ToolBox
                     {
                         lineAngle = -lineAngle - 90;
                     }
-                    
+
                     if (lineAngle == 180)
                     {
                         lineAngle = -lineAngle + 90;
@@ -229,7 +233,7 @@ namespace Vollmer_ToolBox
                     if (uniquePoints.Add((startX, startY, startZ)))
                     {
                         points.Add(("Line", endX, endY, endZ, 0.0, lineAngle));
-                    }                 
+                    }
                 }
 
 
@@ -339,6 +343,7 @@ namespace Vollmer_ToolBox
                     // Is concave and radius too big
                     //------------------------------
                     bool concave = (centerY > startY || centerY > endY);
+                    bool rightCenter = (centerX < startX);
 
                     if (concave && wheelRadius >= radius)
                     {
@@ -402,11 +407,22 @@ namespace Vollmer_ToolBox
                             tangentAngle = startTangentAngle + (i * angleIncrement);
                             tangentAngle = Math.Round(-tangentAngle, 3);
                         }
+
                         else
                         {
-                            startTangentAngle = startAngle - 180.0;
-                            tangentAngle = startTangentAngle - (i * angleIncrement);
-                            tangentAngle = Math.Round(tangentAngle, 3);
+                            if (rightCenter)
+                            {
+                                startTangentAngle = startAngle - 90;
+                                tangentAngle = startTangentAngle - (i * angleIncrement);
+                                tangentAngle = Math.Round(tangentAngle, 3);
+                            }
+
+                            else
+                            {
+                                startTangentAngle = startAngle - 180.0;
+                                tangentAngle = startTangentAngle - (i * angleIncrement);
+                                tangentAngle = Math.Round(tangentAngle, 3);
+                            }
                         }
 
 
@@ -417,8 +433,20 @@ namespace Vollmer_ToolBox
 
                     }
                 }
-                // 4. Preserve the order in which the points were generated
-                var sorted = points.OrderByDescending(p => p.X).ToList();
+
+                var sorted = points;
+                    
+                    if (ReverseRadioButton.Checked)
+                    {
+                    sorted = points.OrderBy(p => p.X).ToList();
+
+                    }
+
+                    else
+                    {
+                        // 4. Preserve the order in which the points were generated
+                       sorted = points.OrderByDescending(p => p.X).ToList();
+                    }
 
                 // 5. Build CSV and write file
                 string csvPath = Path.ChangeExtension(dxfPath, ".csv");
@@ -426,128 +454,130 @@ namespace Vollmer_ToolBox
                 sb.AppendLine("Y;Z;X;A;C;Feed;Theta;Tau");
 
                 foreach (var p in sorted)
+                {
+
+                    string x = p.X.ToString(format, culture);
+
+                    double shearAngle = 0;
+                    double centerOffset = double.Parse(CenterOffsetTextBox.Text);
+
+
+                    double.TryParse(ShearAngleBox.Text, NumberStyles.Float, culture, out shearAngle);
+                    double angleRadians = shearAngle * Math.PI / 180.0;
+
+                    // Use the first point as the reference
+                    double firstX = sorted.First().X;
+                    double firstY = sorted.First().Z + centerOffset;
+                    double calculatedY = p.Z;
+                    double tangentAngle = p.TangentAngle;
+
+                    // Calculate Y based on X and shear angle
+                    calculatedY = firstY - (p.X - firstX) * Math.Tan(angleRadians);
+                    string z = p.Y.ToString(format, culture);
+                    string y = calculatedY.ToString(format, culture);
+                    string r = p.Radius.ToString(format, culture);
+                    string a = 0.00.ToString(format, culture);
+                    string feed = assignedValue.ToString(format, culture);
+                    string c = string.Empty;
+
+                    if (ShearAngleBox.Text == "")
                     {
-                        
-                        string x = p.X.ToString(format, culture);
 
-                        double shearAngle = 0;
-                        double centerOffset = double.Parse(CenterOffsetTextBox.Text);
+                        ShearAngleBox.Text = "0";
+                    }
 
 
-                        double.TryParse(ShearAngleBox.Text, NumberStyles.Float, culture, out shearAngle);
-                        double angleRadians = shearAngle * Math.PI / 180.0;
 
-                        // Use the first point as the reference
-                        double firstX = sorted.First().X;
-                        double firstY = sorted.First().Z + centerOffset;
-                        double calculatedY = p.Z;
-                        double tangentAngle = p.TangentAngle;
+                    if (AlternateRadioButton.Checked)
+                    {
+                        double cValue = 180;
 
-                        // Calculate Y based on X and shear angle
-                        calculatedY = firstY - (p.X - firstX) * Math.Tan(angleRadians);
-                        string z = p.Y.ToString(format, culture);
-                        string y = calculatedY.ToString(format, culture);
-                        string r = p.Radius.ToString(format, culture);
-                        string a = 0.00.ToString(format, culture);
-                        string feed = assignedValue.ToString(format, culture);
-                        string c = string.Empty;
-
-                        if (ShearAngleBox.Text == "")
+                        if (double.TryParse(ShearAngleBox.Text, NumberStyles.Float, culture, out shearAngle))
                         {
-
-                            ShearAngleBox.Text = "0";
+                            cValue = (cValue + shearAngle);
                         }
 
-                        if (AlternateRadioButton.Checked)
+                        c = cValue.ToString(format, culture);
+                    }
+                    else
+                    {
+
+                        if (double.TryParse(ShearAngleBox.Text, NumberStyles.Float, culture, out double cValue))
                         {
-                            double cValue = 180;
-
-                            if (double.TryParse(ShearAngleBox.Text, NumberStyles.Float, culture, out shearAngle))
-                            {
-                                cValue = (cValue + shearAngle);
-                            }
-
                             c = cValue.ToString(format, culture);
                         }
-                        else
-                        {
-
-                            if (double.TryParse(ShearAngleBox.Text, NumberStyles.Float, culture, out double cValue))
-                            {
-                                c = cValue.ToString(format, culture);
-                            }
-                        }
-
-                        string t = p.TangentAngle.ToString(format, culture);
-
-                       
-
-                        sb.AppendLine($"{y}{sep}{z}{sep}{x}{sep}{a}{sep}{c}{sep}{feed}{sep}{t}{sep}{a}");
-                        
                     }
-                
+
+                    string t = p.TangentAngle.ToString(format, culture);
+
+
+
+                    sb.AppendLine($"{y}{sep}{z}{sep}{x}{sep}{a}{sep}{c}{sep}{feed}{sep}{t}{sep}{a}");
+
+                }
+
                 File.WriteAllText(csvPath, sb.ToString(), Encoding.UTF8);
 
                 // Clear existing data
                 CSVdataGridView.DataSource = null;
-                    CSVdataGridView.Columns.Clear();
-                    CSVdataGridView.Rows.Clear();
+                CSVdataGridView.Columns.Clear();
+                CSVdataGridView.Rows.Clear();
 
-                    // Read CSV
-                    string[] lines = File.ReadAllLines(csvPath);
+                // Read CSV
+                string[] lines = File.ReadAllLines(csvPath);
 
-                    if (lines.Length == 0)
+                if (lines.Length == 0)
+                {
+                    MessageBox.Show("CSV file is empty.");
+                    return;
+                }
+
+                // Create DataTable
+                DataTable table = new DataTable();
+
+                // -----------------------------------------
+                // Create columns from header
+                // -----------------------------------------
+
+                string[] headers = lines[0].Split(';');
+
+                foreach (string header in headers)
+                {
+                    table.Columns.Add(header.Trim());
+                }
+
+                // -----------------------------------------
+                // Add CSV rows
+                // -----------------------------------------
+
+                for (int i = 1; i < lines.Length; i++)
+                {
+                    if (string.IsNullOrWhiteSpace(lines[i]))
+                        continue;
+
+                    string[] values = lines[i].Split(';');
+
+                    // Only add rows with the correct number of columns
+                    if (values.Length == table.Columns.Count)
                     {
-                        MessageBox.Show("CSV file is empty.");
-                        return;
+                        table.Rows.Add(values);
                     }
+                }
 
-                    // Create DataTable
-                    DataTable table = new DataTable();
+                // -----------------------------------------
+                // Display DataTable in DataGridView
+                // -----------------------------------------
 
-                    // -----------------------------------------
-                    // Create columns from header
-                    // -----------------------------------------
+                CSVdataGridView.AutoGenerateColumns = true;
+                CSVdataGridView.DataSource = table;
 
-                    string[] headers = lines[0].Split(';');
+                // Optional formatting
+                CSVdataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                foreach (DataGridViewColumn column in CSVdataGridView.Columns)
+                {
+                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
 
-                    foreach (string header in headers)
-                    {
-                        table.Columns.Add(header.Trim());
-                    }
-
-                    // -----------------------------------------
-                    // Add CSV rows
-                    // -----------------------------------------
-
-                    for (int i = 1; i < lines.Length; i++)
-                    {
-                        if (string.IsNullOrWhiteSpace(lines[i]))
-                            continue;
-
-                        string[] values = lines[i].Split(';');
-
-                        // Only add rows with the correct number of columns
-                        if (values.Length == table.Columns.Count)
-                        {
-                            table.Rows.Add(values);
-                        }
-                    }
-
-                    // -----------------------------------------
-                    // Display DataTable in DataGridView
-                    // -----------------------------------------
-
-                    CSVdataGridView.AutoGenerateColumns = true;
-                    CSVdataGridView.DataSource = table;
-
-                    // Optional formatting
-                    CSVdataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    foreach (DataGridViewColumn column in CSVdataGridView.Columns)
-                    {
-                        column.SortMode = DataGridViewColumnSortMode.NotSortable;
-                    }
-                
 
 
 
@@ -560,29 +590,29 @@ namespace Vollmer_ToolBox
             }
 
         }
-        
-    
 
-        
-        
-            private void CAxisTextBox_KeyPress(object sender, KeyPressEventArgs e)
-            {
+
+
+
+
+        private void CAxisTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
             // 1. Allow control characters (like Backspace, Ctrl+C, etc.)
-                if (char.IsControl(e.KeyChar))
-                {
+            if (char.IsControl(e.KeyChar))
+            {
                 return;
-                }
+            }
 
-                // 2. Allow digits (0-9)
-                if (char.IsDigit(e.KeyChar))
-                {
+            // 2. Allow digits (0-9)
+            if (char.IsDigit(e.KeyChar))
+            {
                 return;
-                }
+            }
 
-                // 3. Allow only one decimal point
-                // Note: Use '.' or your local culture's decimal separator
-                if (e.KeyChar == '.')
-                {
+            // 3. Allow only one decimal point
+            // Note: Use '.' or your local culture's decimal separator
+            if (e.KeyChar == '.')
+            {
                 // Check if the textbox already contains a decimal point
                 System.Windows.Forms.TextBox textBox = sender as System.Windows.Forms.TextBox;
                 if (textBox != null && !textBox.Text.Contains("."))
@@ -608,7 +638,7 @@ namespace Vollmer_ToolBox
 
         }
 
-       
+
         private void IncrementsTextBox_Enter(object sender, EventArgs e)
         {
 
@@ -777,9 +807,19 @@ namespace Vollmer_ToolBox
         private void CenterOffsetTextBox_Leave(object sender, EventArgs e)
         {
             CSVPictureBox.Image = Properties.Resources.OpenProcedurePic;
+
         }
+
+        private bool ReverseRadioButton1 = false;
+        private void ReverseRadioButton_Click(object sender, EventArgs e)
+        {
+            ReverseRadioButton1 = !ReverseRadioButton1;
+            ReverseRadioButton.Checked = ReverseRadioButton1;
+        }
+
     }
 }
+
 
 
 
