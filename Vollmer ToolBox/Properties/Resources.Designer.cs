@@ -19,7 +19,7 @@ namespace Vollmer_ToolBox.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -83,6 +83,16 @@ namespace Vollmer_ToolBox.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GrindingPositionTwo {
+            get {
+                object obj = ResourceManager.GetObject("GrindingPositionTwo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_close_window_100 {
             get {
                 object obj = ResourceManager.GetObject("icons8-close-window-100", resourceCulture);
@@ -123,6 +133,46 @@ namespace Vollmer_ToolBox.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap OpenProcedurePic {
+            get {
+                object obj = ResourceManager.GetObject("OpenProcedurePic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ShearPic {
+            get {
+                object obj = ResourceManager.GetObject("ShearPic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SideDistance {
+            get {
+                object obj = ResourceManager.GetObject("SideDistance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ThetaPic {
+            get {
+                object obj = ResourceManager.GetObject("ThetaPic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap VOLLMER_LOGO {
             get {
                 object obj = ResourceManager.GetObject("VOLLMER_LOGO", resourceCulture);
@@ -136,6 +186,16 @@ namespace Vollmer_ToolBox.Properties {
         internal static System.Drawing.Bitmap vollmer_werke_maschinenfabrik_gmbh_logo_logo {
             get {
                 object obj = ResourceManager.GetObject("vollmer-werke-maschinenfabrik-gmbh-logo-logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WheelDiameter {
+            get {
+                object obj = ResourceManager.GetObject("WheelDiameter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

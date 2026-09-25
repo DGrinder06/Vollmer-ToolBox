@@ -142,4 +142,22 @@
   <data name="icons8-minimize-window-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-minimize-window-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="OpenProcedurePic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Open Procedure Pic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShearPic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ShearPic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ThetaPic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\ThetaPic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GrindingPositionTwo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Grinding Position Two.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WheelDiameter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WheelDiameter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SideDistance" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SideDistance1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

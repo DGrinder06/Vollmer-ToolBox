@@ -14,7 +14,7 @@ using System.Windows.Forms;
 namespace Vollmer_ToolBox
 {
 
-   
+
     public partial class Form1 : Form
     {
         int mov;
@@ -28,12 +28,12 @@ namespace Vollmer_ToolBox
             SidePanel.Height = button1.Height;
             SidePanel.Top = button1.Top;
             dressingSpeedsCalculator1.BringToFront();
-           
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -41,7 +41,7 @@ namespace Vollmer_ToolBox
 
         }
 
-        
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -51,16 +51,11 @@ namespace Vollmer_ToolBox
 
         }
 
-        private void dressingSpeedsCalculator1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public void button2_Click(object sender, EventArgs e)
         {
             SidePanel.Height = button2.Height;
             SidePanel.Top = button2.Top;
-            rightTriangle1.BringToFront();
+            RightTrianglePanel.BringToFront();
         }
 
 
@@ -69,7 +64,7 @@ namespace Vollmer_ToolBox
 
         }
 
-        
+
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
@@ -90,7 +85,7 @@ namespace Vollmer_ToolBox
 
         private void panel2_MouseMove(object sender, MouseEventArgs e)
         {
-            if(mov == 1)
+            if (mov == 1)
             {
                 this.SetDesktopLocation(MousePosition.X - movX, MousePosition.Y - movY);
             }
@@ -107,6 +102,23 @@ namespace Vollmer_ToolBox
         }
 
         private void rightTriangle1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DXFtoCSV_Click(object sender, EventArgs e)
+        {
+            SidePanel.Height = DXFtoCSVButton.Height;
+            SidePanel.Top = DXFtoCSVButton.Top;
+            CSV.BringToFront();
+        }   
+
+        private void CSV_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CSV_Paint(object sender, PaintEventArgs e)
         {
 
         }
