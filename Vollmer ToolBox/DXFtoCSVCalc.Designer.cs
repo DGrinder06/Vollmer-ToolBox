@@ -71,7 +71,7 @@
             // 
             // CalculateButton
             // 
-            CalculateButton.Location = new System.Drawing.Point(311, 289);
+            CalculateButton.Location = new System.Drawing.Point(313, 289);
             CalculateButton.Name = "CalculateButton";
             CalculateButton.Size = new System.Drawing.Size(92, 51);
             CalculateButton.TabIndex = 3;
@@ -101,7 +101,7 @@
             // IncrementLabel
             // 
             IncrementLabel.AutoSize = true;
-            IncrementLabel.Location = new System.Drawing.Point(67, 213);
+            IncrementLabel.Location = new System.Drawing.Point(70, 213);
             IncrementLabel.Name = "IncrementLabel";
             IncrementLabel.Size = new System.Drawing.Size(104, 15);
             IncrementLabel.TabIndex = 7;
@@ -131,7 +131,7 @@
             // 
             SpeedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             SpeedComboBox.FormattingEnabled = true;
-            SpeedComboBox.Items.AddRange(new object[] { "EIL", "V1", "V2", "V3", "V4" });
+            SpeedComboBox.Items.AddRange(new object[] { "V1", "V2", "V3", "V4" });
             SpeedComboBox.Location = new System.Drawing.Point(319, 231);
             SpeedComboBox.Name = "SpeedComboBox";
             SpeedComboBox.Size = new System.Drawing.Size(84, 23);
@@ -141,7 +141,7 @@
             // SpeedLabel
             // 
             SpeedLabel.AutoSize = true;
-            SpeedLabel.Location = new System.Drawing.Point(319, 213);
+            SpeedLabel.Location = new System.Drawing.Point(321, 213);
             SpeedLabel.Name = "SpeedLabel";
             SpeedLabel.Size = new System.Drawing.Size(84, 15);
             SpeedLabel.TabIndex = 11;
@@ -221,7 +221,7 @@
             // WheelDiameterLabel
             // 
             WheelDiameterLabel.AutoSize = true;
-            WheelDiameterLabel.Location = new System.Drawing.Point(565, 213);
+            WheelDiameterLabel.Location = new System.Drawing.Point(560, 213);
             WheelDiameterLabel.Name = "WheelDiameterLabel";
             WheelDiameterLabel.Size = new System.Drawing.Size(91, 15);
             WheelDiameterLabel.TabIndex = 18;
@@ -230,7 +230,7 @@
             // ReverseRadioButton
             // 
             ReverseRadioButton.AutoSize = true;
-            ReverseRadioButton.Location = new System.Drawing.Point(488, 305);
+            ReverseRadioButton.Location = new System.Drawing.Point(480, 305);
             ReverseRadioButton.Name = "ReverseRadioButton";
             ReverseRadioButton.Size = new System.Drawing.Size(125, 19);
             ReverseRadioButton.TabIndex = 19;

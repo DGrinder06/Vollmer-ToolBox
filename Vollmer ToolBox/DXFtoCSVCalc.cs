@@ -111,16 +111,13 @@ namespace Vollmer_ToolBox
             // 1. Get the text currently selected in the ComboBox
             string selectedText = SpeedComboBox.Text;
 
+            
             // 2. Declare a variable to hold your integer
             int assignedValue = 0;
 
             // 3. Match the string to your custom integer values
             switch (selectedText)
             {
-                case "EIL":
-                    assignedValue = 0;
-                    break;
-
                 case "V1":
                     assignedValue = 1;
                     break;
@@ -138,7 +135,8 @@ namespace Vollmer_ToolBox
                     break;
 
                 default:
-                    assignedValue = 0; // Fallback default
+                    assignedValue = 1; // Fallback default
+                    SpeedComboBox.Text = "V1";
                     break;
             }
 
@@ -260,7 +258,7 @@ namespace Vollmer_ToolBox
                         out maxPointDistance))
                     {
                         MessageBox.Show(
-                            "Please enter a valid point distance, such as 0.5 or 0,5.",
+                            "Please enter a valid point distance, such as 0.5.",
                             "Invalid Distance",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
@@ -441,7 +439,6 @@ namespace Vollmer_ToolBox
                     sorted = points.OrderBy(p => p.X).ToList();
 
                     }
-
                     else
                     {
                         // 4. Preserve the order in which the points were generated
@@ -463,16 +460,33 @@ namespace Vollmer_ToolBox
 
 
                     double.TryParse(ShearAngleBox.Text, NumberStyles.Float, culture, out shearAngle);
+
+
                     double angleRadians = shearAngle * Math.PI / 180.0;
 
                     // Use the first point as the reference
                     double firstX = sorted.First().X;
-                    double firstY = sorted.First().Z + centerOffset;
-                    double calculatedY = p.Z;
+                    double lastX = sorted.Last().Z;
+                    double firstY;
+                    double calculatedY;
+
+                    if (ReverseRadioButton.Checked)
+                    { 
+                    firstY = sorted.First().Z + (p.X - lastX) * Math.Tan(angleRadians);
+                    calculatedY = p.Z;
+                    calculatedY = -firstY + centerOffset;
+                    }
+                    else
+                    {
+                        firstY = sorted.First().Z + centerOffset;
+                        calculatedY = p.Z;
+                        calculatedY = firstY - (p.X - firstX) * Math.Tan(angleRadians);
+                    }
+
                     double tangentAngle = p.TangentAngle;
 
-                    // Calculate Y based on X and shear angle
-                    calculatedY = firstY - (p.X - firstX) * Math.Tan(angleRadians);
+
+
                     string z = p.Y.ToString(format, culture);
                     string y = calculatedY.ToString(format, culture);
                     string r = p.Radius.ToString(format, culture);
