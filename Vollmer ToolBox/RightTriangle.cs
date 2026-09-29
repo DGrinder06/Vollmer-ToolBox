@@ -8,6 +8,8 @@ using System.Windows.Forms;
 
 namespace Vollmer_ToolBox
 {
+    
+
     public partial class RightTriangle : UserControl
 
     {
@@ -23,6 +25,10 @@ namespace Vollmer_ToolBox
         public RightTriangle()
         {
             InitializeComponent();
+            NumericTextBoxHelper.Attach(textBox1);
+            NumericTextBoxHelper.Attach(textBox2);
+            NumericTextBoxHelper.Attach(textBox3);
+            NumericTextBoxHelper.Attach(textBox4);
         }
         private void zeroVariable()
         {
@@ -32,12 +38,21 @@ namespace Vollmer_ToolBox
             angle = 0;
 
         }
-        private void RightTriangle_Load(object sender, EventArgs e)
+        private void InitializeForm()
         {
-
+            radioButton1.Checked = false;
+            radioButton2.Checked = false;
+            radioButton3.Checked = false;
+            textBox1.Text = string.Empty;
+            textBox2.Text = string.Empty;
+            textBox3.Text = string.Empty;
+            textBox4.Text = string.Empty;
+            textBox4.ReadOnly = true;
+            textBox1.ReadOnly = true;
+            textBox2.ReadOnly = true;
+            textBox3.ReadOnly = true;
         }
-
-        private void Button1_Click(object sender, EventArgs e)
+        private void RightTriangle_Load(object sender, EventArgs e)
         {
 
         }
@@ -56,28 +71,6 @@ namespace Vollmer_ToolBox
 
 
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -346,37 +339,32 @@ namespace Vollmer_ToolBox
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            textBox1.Text = string.Empty;
-            textBox2.Text = string.Empty;
-            textBox3.Text = string.Empty;
-            textBox4.Text = string.Empty;
-            radioButton1.Checked = false;
-            radioButton2.Checked = false;
-            radioButton3.Checked = false;
-            textBox4.ReadOnly = true;
-            textBox1.ReadOnly = true;
-            textBox2.ReadOnly = true;
-            textBox3.ReadOnly = true;
+            zeroVariable();
+            InitializeForm();
 
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            textBox2.ReadOnly = true;
-            textBox4.ReadOnly = true;
+            
+ 
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            textBox3.ReadOnly = true;
-            textBox4.ReadOnly = true;
+
+
         }
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
-            textBox3.ReadOnly = true;
-            textBox2.ReadOnly = true;
+       
+
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+    
         }
     }
 }

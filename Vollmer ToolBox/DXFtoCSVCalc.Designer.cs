@@ -96,7 +96,6 @@
             IncrementsTextBox.TabIndex = 6;
             IncrementsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             IncrementsTextBox.Enter += IncrementsTextBox_Enter;
-            IncrementsTextBox.KeyPress += IncrementsTextBox_KeyPress;
             // 
             // IncrementLabel
             // 
@@ -115,7 +114,6 @@
             ShearAngleBox.TabIndex = 8;
             ShearAngleBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             ShearAngleBox.Enter += CAxisTextBox_Enter;
-            ShearAngleBox.KeyPress += CAxisTextBox_KeyPress;
             ShearAngleBox.Leave += CAxisTextBox_Leave;
             // 
             // CAxisLabel
@@ -155,7 +153,6 @@
             CenterOffsetTextBox.TabIndex = 12;
             CenterOffsetTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             CenterOffsetTextBox.Enter += CenterOffsetTextBox_Enter;
-            CenterOffsetTextBox.KeyPress += CenterOffsetTextBox_KeyPress;
             CenterOffsetTextBox.Leave += CenterOffsetTextBox_Leave;
             // 
             // CenterOffset
@@ -215,7 +212,6 @@
             WheelDiameterTextBox.TabIndex = 17;
             WheelDiameterTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             WheelDiameterTextBox.Enter += WheelDiameterTextBox_Enter;
-            WheelDiameterTextBox.KeyPress += WheelDiameterTextBox_KeyPress;
             WheelDiameterTextBox.Leave += WheelDiameterTextBox_Leave;
             // 
             // WheelDiameterLabel

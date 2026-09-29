@@ -100,7 +100,7 @@ namespace Vollmer_ToolBox
             textBox1.ReadOnly = true;
             textBox1.Size = new System.Drawing.Size(75, 23);
             textBox1.TabIndex = 7;
-            textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.KeyPress += textBox1_KeyPress;
             // 
             // textBox2
             // 
@@ -109,7 +109,6 @@ namespace Vollmer_ToolBox
             textBox2.ReadOnly = true;
             textBox2.Size = new System.Drawing.Size(112, 23);
             textBox2.TabIndex = 9;
-            textBox2.TextChanged += textBox2_TextChanged;
             textBox2.KeyPress += textBox2_KeyPress;
             // 
             // label2
@@ -130,7 +129,6 @@ namespace Vollmer_ToolBox
             textBox3.ReadOnly = true;
             textBox3.Size = new System.Drawing.Size(89, 23);
             textBox3.TabIndex = 11;
-            textBox3.TextChanged += textBox3_TextChanged;
             textBox3.KeyPress += textBox3_KeyPress;
             // 
             // label3
@@ -151,7 +149,6 @@ namespace Vollmer_ToolBox
             textBox4.ReadOnly = true;
             textBox4.Size = new System.Drawing.Size(112, 23);
             textBox4.TabIndex = 13;
-            textBox4.TextChanged += textBox4_TextChanged;
             textBox4.KeyPress += textBox4_KeyPress;
             // 
             // label4

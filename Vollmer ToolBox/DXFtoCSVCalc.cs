@@ -31,6 +31,10 @@ namespace Vollmer_ToolBox
             InitializeComponent();
             CSVdataGridView.RowHeadersWidth = 50;
             CSVdataGridView.RowPostPaint += CSVdataGridView_RowPostPaint;
+            NumericTextBoxHelper.Attach(IncrementsTextBox);
+            NumericTextBoxHelper.Attach(CenterOffsetTextBox);
+            NumericTextBoxHelper.Attach(WheelDiameterTextBox);
+            NumericTextBoxHelper.Attach(ShearAngleBox);
 
         }
 
@@ -39,35 +43,7 @@ namespace Vollmer_ToolBox
         // ============================================================
         private void IncrementsTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // 1. Allow control characters (like Backspace, Ctrl+C, etc.)
-            if (char.IsControl(e.KeyChar))
-            {
-                return;
-            }
-
-            // 2. Allow digits (0-9)
-            if (char.IsDigit(e.KeyChar))
-            {
-                return;
-            }
-
-            // 3. Allow only one decimal point
-            // Note: Use '.' or your local culture's decimal separator
-            if (e.KeyChar == '.')
-            {
-                // Check if the textbox already contains a decimal point
-                System.Windows.Forms.TextBox textBox = sender as System.Windows.Forms.TextBox;
-
-                if (textBox != null && !textBox.Text.Contains("."))
-                {
-                    return; // Allow the decimal point because it doesn't exist yet
-                }
-            }
-
-            // If the character is none of the above, reject it
-            e.Handled = true;
         }
-
         // ============================================================
         // BROWSE FOR DXF
         // ============================================================
@@ -649,40 +625,7 @@ namespace Vollmer_ToolBox
 
         private void CAxisTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // 1. Allow control characters (like Backspace, Ctrl+C, etc.)
-            if (char.IsControl(e.KeyChar))
-            {
-                return;
-            }
-
-            // 2. Allow digits (0-9)
-            if (char.IsDigit(e.KeyChar))
-            {
-                return;
-            }
-
-            // 3. Allow only one decimal point
-            // Note: Use '.' or your local culture's decimal separator
-            if (e.KeyChar == '.')
-            {
-                // Check if the textbox already contains a decimal point
-                System.Windows.Forms.TextBox textBox = sender as System.Windows.Forms.TextBox;
-                if (textBox != null && !textBox.Text.Contains("."))
-                {
-                    return; // Allow the decimal point because it doesn't exist yet
-                }
-            }
-            // 4. Allow negative sign only at the beginning
-
-            if (e.KeyChar == '-' && ShearAngleBox.SelectionStart == 0)
-            {
-                // Don't allow a second '-'
-                if (!ShearAngleBox.Text.Contains("-"))
-                    return;
-            }
-            // If the character is none of the above, reject it
-            e.Handled = true;
-
+          
         }
 
         private void SpeedComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -765,44 +708,6 @@ namespace Vollmer_ToolBox
             AlternateRadioButton.Checked = AlternateRadioButton1;
         }
 
-        private void WheelDiameterTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // 1. Allow control characters (like Backspace, Ctrl+C, etc.)
-            if (char.IsControl(e.KeyChar))
-            {
-                return;
-            }
-
-            // 2. Allow digits (0-9)
-            if (char.IsDigit(e.KeyChar))
-            {
-                return;
-            }
-
-            // 3. Allow only one decimal point
-            // Note: Use '.' or your local culture's decimal separator
-            if (e.KeyChar == '.')
-            {
-                // Check if the textbox already contains a decimal point
-                System.Windows.Forms.TextBox textBox = sender as System.Windows.Forms.TextBox;
-                if (textBox != null && !textBox.Text.Contains("."))
-                {
-                    return; // Allow the decimal point because it doesn't exist yet
-                }
-            }
-            // 4. Allow negative sign only at the beginning
-
-            if (e.KeyChar == '-' && CenterOffsetTextBox.SelectionStart == 0)
-            {
-                // Don't allow a second '-'
-                if (!CenterOffsetTextBox.Text.Contains("-"))
-                    return;
-            }
-
-            // If the character is none of the above, reject it
-            e.Handled = true;
-        }
-
         private void WheelDiameterTextBox_Enter(object sender, EventArgs e)
         {
             CSVPictureBox.Image = Properties.Resources.WheelDiameter;
@@ -816,44 +721,6 @@ namespace Vollmer_ToolBox
         private void CenterOffsetTextBox_Enter(object sender, EventArgs e)
         {
             CSVPictureBox.Image = Properties.Resources.SideDistance;
-        }
-
-        private void CenterOffsetTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // 1. Allow control characters (like Backspace, Ctrl+C, etc.)
-            if (char.IsControl(e.KeyChar))
-            {
-                return;
-            }
-
-            // 2. Allow digits (0-9)
-            if (char.IsDigit(e.KeyChar))
-            {
-                return;
-            }
-
-            // 3. Allow only one decimal point
-            // Note: Use '.' or your local culture's decimal separator
-            if (e.KeyChar == '.')
-            {
-                // Check if the textbox already contains a decimal point
-                System.Windows.Forms.TextBox textBox = sender as System.Windows.Forms.TextBox;
-                if (textBox != null && !textBox.Text.Contains("."))
-                {
-                    return; // Allow the decimal point because it doesn't exist yet
-                }
-            }
-            // 4. Allow negative sign only at the beginning
-
-            if (e.KeyChar == '-' && CenterOffsetTextBox.SelectionStart == 0)
-            {
-                // Don't allow a second '-'
-                if (!CenterOffsetTextBox.Text.Contains("-"))
-                    return;
-            }
-
-            // If the character is none of the above, reject it
-            e.Handled = true;
         }
 
         private void CenterOffsetTextBox_Leave(object sender, EventArgs e)
