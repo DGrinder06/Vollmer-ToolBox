@@ -46,7 +46,7 @@
             AlternateRadioButton = new System.Windows.Forms.RadioButton();
             WheelDiameterTextBox = new System.Windows.Forms.TextBox();
             WheelDiameterLabel = new System.Windows.Forms.Label();
-            ReverseRadioButton = new System.Windows.Forms.RadioButton();
+            ReverseCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)CSVPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CSVdataGridView).BeginInit();
             SuspendLayout();
@@ -227,23 +227,22 @@
             WheelDiameterLabel.TabIndex = 18;
             WheelDiameterLabel.Text = "Wheel Diameter";
             // 
-            // ReverseRadioButton
+            // ReverseCheckBox
             // 
-            ReverseRadioButton.AutoSize = true;
-            ReverseRadioButton.Location = new System.Drawing.Point(480, 305);
-            ReverseRadioButton.Name = "ReverseRadioButton";
-            ReverseRadioButton.Size = new System.Drawing.Size(125, 19);
-            ReverseRadioButton.TabIndex = 19;
-            ReverseRadioButton.TabStop = true;
-            ReverseRadioButton.Text = "Reverse Processing";
-            ReverseRadioButton.UseVisualStyleBackColor = true;
-            ReverseRadioButton.Click += ReverseRadioButton_Click;
+            ReverseCheckBox.AutoSize = true;
+            ReverseCheckBox.Location = new System.Drawing.Point(476, 306);
+            ReverseCheckBox.Name = "ReverseCheckBox";
+            ReverseCheckBox.Size = new System.Drawing.Size(126, 19);
+            ReverseCheckBox.TabIndex = 20;
+            ReverseCheckBox.Text = "Reverse Processing";
+            ReverseCheckBox.UseVisualStyleBackColor = true;
+            ReverseCheckBox.Click += ReverseCheckBox_Click;
             // 
             // DXFtoCSV
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            Controls.Add(ReverseRadioButton);
+            Controls.Add(ReverseCheckBox);
             Controls.Add(WheelDiameterLabel);
             Controls.Add(WheelDiameterTextBox);
             Controls.Add(AlternateRadioButton);
@@ -288,6 +287,6 @@
         private System.Windows.Forms.RadioButton AlternateRadioButton;
         private System.Windows.Forms.TextBox WheelDiameterTextBox;
         private System.Windows.Forms.Label WheelDiameterLabel;
-        private System.Windows.Forms.RadioButton ReverseRadioButton;
+        private System.Windows.Forms.CheckBox ReverseCheckBox;
     }
 }

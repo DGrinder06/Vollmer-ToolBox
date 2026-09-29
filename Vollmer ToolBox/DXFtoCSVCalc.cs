@@ -111,7 +111,7 @@ namespace Vollmer_ToolBox
             // 1. Get the text currently selected in the ComboBox
             string selectedText = SpeedComboBox.Text;
 
-            
+
             // 2. Declare a variable to hold your integer
             int assignedValue = 0;
 
@@ -197,28 +197,41 @@ namespace Vollmer_ToolBox
                     double endX = Math.Round(line.EndPoint.X, 3);
                     double endY = Math.Round(line.EndPoint.Y, 3);
                     double endZ = Math.Round(line.EndPoint.Z, 3);
+                    double dx;
+                    double dy;
+                    double lineAngleRadians;
+                    double lineAngle;
 
-                    // Calculate direction of the line
-                    double dx = startX - endX;
-                    double dy = startY - endY;
-
-                    double lineAngleRadians = Math.Atan2(dy, dx);
-
-                    // Convert radians to degrees
-                    double lineAngle = lineAngleRadians * 180.0 / Math.PI;
-
-                    // Normalize to 0 - 360 degrees
-                    lineAngle %= 360.0;
-
-                    if (lineAngle == 0)
+                    if (AlternateRadioButton.Checked)
                     {
+                        dx = endX - startX;
+                        dy = endY - startY;
+                        lineAngleRadians = Math.Atan2(dy, dx);
+                        lineAngle = lineAngleRadians * -180.0 / Math.PI;
+                    }
+                    else
+                    {
+                        dx = startX - endX;
+                        dy = startY - endY;
+                        lineAngleRadians = Math.Atan2(dy, dx);
+                        lineAngle = lineAngleRadians * 180.0 / Math.PI;
+                    }
+                
+                    
+                      if (lineAngle == 0)
+                        {
                         lineAngle = -lineAngle - 90;
-                    }
-
-                    if (lineAngle == 180)
+                        }
+                    
+                        if (lineAngle == 180)
+                        {
+                            lineAngle = -lineAngle + 90;
+                        }
+                        if (lineAngle == -180)
                     {
-                        lineAngle = -lineAngle + 90;
+                        lineAngle = lineAngle + 90;
                     }
+                    
 
                     lineAngle = Math.Round(lineAngle, 3);
 
@@ -271,7 +284,7 @@ namespace Vollmer_ToolBox
                 if (maxPointDistance <= 0)
                 {
                     MessageBox.Show(
-                        "Maximum point distance must be greater than zero.",
+                        "Radius increments must be greater than zero.",
                         "Invalid Distance",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -399,6 +412,31 @@ namespace Vollmer_ToolBox
                         double startTangentAngle;
                         double tangentAngle;
 
+
+                        if (AlternateRadioButton.Checked && (concave))
+
+                        {
+                            startTangentAngle = startAngle - 360;
+                            tangentAngle = startTangentAngle + (i * angleIncrement);
+                            tangentAngle = Math.Round(tangentAngle, 3);
+                        }
+                        else if (AlternateRadioButton.Checked && (!concave))
+                        {
+                            if (rightCenter)
+                            {
+                                startTangentAngle = startAngle + 90;
+                                tangentAngle = startTangentAngle - (i * angleIncrement);
+                                tangentAngle = Math.Round(-tangentAngle, 3);
+                            }
+                            else
+                            {
+                                startTangentAngle = startAngle - 180.0;
+                                tangentAngle = startTangentAngle + (i * angleIncrement);
+                                tangentAngle = Math.Round(tangentAngle, 3);
+                            }
+                        }
+                        else
+
                         if (concave)
                         {
                             startTangentAngle = startAngle - 180;
@@ -433,17 +471,17 @@ namespace Vollmer_ToolBox
                 }
 
                 var sorted = points;
-                    
-                    if (ReverseRadioButton.Checked)
-                    {
+
+                if (ReverseCheckBox.Checked)
+                {
                     sorted = points.OrderBy(p => p.X).ToList();
 
-                    }
-                    else
-                    {
-                        // 4. Preserve the order in which the points were generated
-                       sorted = points.OrderByDescending(p => p.X).ToList();
-                    }
+                }
+                else
+                {
+                    // 4. Preserve the order in which the points were generated
+                    sorted = points.OrderByDescending(p => p.X).ToList();
+                }
 
                 // 5. Build CSV and write file
                 string csvPath = Path.ChangeExtension(dxfPath, ".csv");
@@ -470,11 +508,11 @@ namespace Vollmer_ToolBox
                     double firstY;
                     double calculatedY;
 
-                    if (ReverseRadioButton.Checked)
-                    { 
-                    firstY = sorted.First().Z + (p.X - lastX) * Math.Tan(angleRadians);
-                    calculatedY = p.Z;
-                    calculatedY = -firstY + centerOffset;
+                    if (ReverseCheckBox.Checked)
+                    {
+                        firstY = sorted.First().Z + (p.X - lastX) * Math.Tan(angleRadians);
+                        calculatedY = p.Z;
+                        calculatedY = -firstY + centerOffset;
                     }
                     else
                     {
@@ -824,13 +862,12 @@ namespace Vollmer_ToolBox
 
         }
 
-        private bool ReverseRadioButton1 = false;
-        private void ReverseRadioButton_Click(object sender, EventArgs e)
+        private bool ReverseCheckBox1 = false;
+        private void ReverseCheckBox_Click(object sender, EventArgs e)
         {
-            ReverseRadioButton1 = !ReverseRadioButton1;
-            ReverseRadioButton.Checked = ReverseRadioButton1;
+            ReverseCheckBox1 = !ReverseCheckBox1;
+            ReverseCheckBox.Checked = ReverseCheckBox1;
         }
-
     }
 }
 

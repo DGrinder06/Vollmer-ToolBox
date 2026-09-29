@@ -19,7 +19,7 @@ namespace Vollmer_ToolBox
 
 
 
-     
+
         public RightTriangle()
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace Vollmer_ToolBox
             legB = 0;
             legC = 0;
             angle = 0;
-            
+
         }
         private void RightTriangle_Load(object sender, EventArgs e)
         {
@@ -39,7 +39,7 @@ namespace Vollmer_ToolBox
 
         private void Button1_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace Vollmer_ToolBox
             textBox3.ReadOnly = false;
         }
 
-    
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -62,16 +62,16 @@ namespace Vollmer_ToolBox
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
-        
-        
+
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
-              
+
+
         }
-       
+
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
@@ -110,8 +110,8 @@ namespace Vollmer_ToolBox
             textBox2.ReadOnly = false;
             textBox3.ReadOnly = true;
         }
-       
-    
+
+
         private void tan() // Function for Tangent selection
         {
             textBox4.ReadOnly = true;
@@ -133,7 +133,7 @@ namespace Vollmer_ToolBox
                 textBox1.ReadOnly = false;
                 textBox2.ReadOnly = false;
                 textBox3.ReadOnly = false;
-                
+
             }
             if (textBox1.Text == "" && textBox2.Text == "" || textBox3.Text == "" && textBox2.Text == "" || textBox1.Text == "" && textBox3.Text == "")
             {
@@ -179,7 +179,7 @@ namespace Vollmer_ToolBox
                 textBox4.Text = Convert.ToString(Math.Round(legC, 4));
             }
 
-            
+
         }
         private void sin() // Function for sin selection
         {
@@ -314,7 +314,7 @@ namespace Vollmer_ToolBox
         }
         private void calculation()
         {
-            
+
             if (radioButton1.Checked == true)
             {
                 tan();
@@ -329,7 +329,7 @@ namespace Vollmer_ToolBox
                 cos();
             }
 
-        
+
             else
             {
                 MessageBox.Show("Please select an Angle");
@@ -339,7 +339,7 @@ namespace Vollmer_ToolBox
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             zeroVariable();
             calculation();
         }
@@ -358,7 +358,25 @@ namespace Vollmer_ToolBox
             textBox1.ReadOnly = true;
             textBox2.ReadOnly = true;
             textBox3.ReadOnly = true;
-           
+
+        }
+
+        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox2.ReadOnly = true;
+            textBox4.ReadOnly = true;
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox3.ReadOnly = true;
+            textBox4.ReadOnly = true;
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox3.ReadOnly = true;
+            textBox2.ReadOnly = true;
         }
     }
 }

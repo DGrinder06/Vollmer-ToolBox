@@ -30,196 +30,199 @@ namespace Vollmer_ToolBox
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RightTriangle));
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            radioButton1 = new System.Windows.Forms.RadioButton();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
+            radioButton2 = new System.Windows.Forms.RadioButton();
+            radioButton3 = new System.Windows.Forms.RadioButton();
+            textBox1 = new System.Windows.Forms.TextBox();
+            textBox2 = new System.Windows.Forms.TextBox();
+            label2 = new System.Windows.Forms.Label();
+            textBox3 = new System.Windows.Forms.TextBox();
+            label3 = new System.Windows.Forms.Label();
+            textBox4 = new System.Windows.Forms.TextBox();
+            label4 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            button1 = new System.Windows.Forms.Button();
+            button2 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // radioButton1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(58, 48);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(101, 19);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Tangent Angle";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new System.Drawing.Point(58, 48);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new System.Drawing.Size(102, 19);
+            radioButton1.TabIndex = 1;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Tangent Angle";
+            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(13, 73);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(621, 364);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.BackColor = System.Drawing.SystemColors.Window;
+            pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new System.Drawing.Point(13, 73);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(621, 364);
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
             // 
             // radioButton2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(286, 48);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(75, 19);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Sin Angle";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new System.Drawing.Point(286, 48);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new System.Drawing.Size(75, 19);
+            radioButton2.TabIndex = 3;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "Sin Angle";
+            radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
             // 
             // radioButton3
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(502, 48);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(79, 19);
-            this.radioButton3.TabIndex = 5;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Cos Angle";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            radioButton3.AutoSize = true;
+            radioButton3.Location = new System.Drawing.Point(502, 48);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new System.Drawing.Size(79, 19);
+            radioButton3.TabIndex = 5;
+            radioButton3.TabStop = true;
+            radioButton3.Text = "Cos Angle";
+            radioButton3.UseVisualStyleBackColor = true;
+            radioButton3.CheckedChanged += radioButton3_CheckedChanged;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(401, 356);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(75, 23);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            textBox1.Location = new System.Drawing.Point(401, 356);
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new System.Drawing.Size(75, 23);
+            textBox1.TabIndex = 7;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(199, 382);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(112, 23);
-            this.textBox2.TabIndex = 9;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            textBox2.Location = new System.Drawing.Point(199, 382);
+            textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new System.Drawing.Size(112, 23);
+            textBox2.TabIndex = 9;
+            textBox2.TextChanged += textBox2_TextChanged;
+            textBox2.KeyPress += textBox2_KeyPress;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.Window;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(246, 358);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 21);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "A";
+            label2.AutoSize = true;
+            label2.BackColor = System.Drawing.SystemColors.Window;
+            label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            label2.Location = new System.Drawing.Point(246, 358);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(21, 21);
+            label2.TabIndex = 10;
+            label2.Text = "A";
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(26, 266);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(89, 23);
-            this.textBox3.TabIndex = 11;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            textBox3.Location = new System.Drawing.Point(26, 266);
+            textBox3.Name = "textBox3";
+            textBox3.ReadOnly = true;
+            textBox3.Size = new System.Drawing.Size(89, 23);
+            textBox3.TabIndex = 11;
+            textBox3.TextChanged += textBox3_TextChanged;
+            textBox3.KeyPress += textBox3_KeyPress;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.Window;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(75, 242);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(20, 21);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "B";
+            label3.AutoSize = true;
+            label3.BackColor = System.Drawing.SystemColors.Window;
+            label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            label3.Location = new System.Drawing.Point(75, 242);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(20, 21);
+            label3.TabIndex = 12;
+            label3.Text = "B";
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(269, 242);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(112, 23);
-            this.textBox4.TabIndex = 13;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            textBox4.Location = new System.Drawing.Point(269, 242);
+            textBox4.Name = "textBox4";
+            textBox4.ReadOnly = true;
+            textBox4.Size = new System.Drawing.Size(112, 23);
+            textBox4.TabIndex = 13;
+            textBox4.TextChanged += textBox4_TextChanged;
+            textBox4.KeyPress += textBox4_KeyPress;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.Window;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(319, 218);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(20, 21);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "C";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            label4.AutoSize = true;
+            label4.BackColor = System.Drawing.SystemColors.Window;
+            label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            label4.Location = new System.Drawing.Point(319, 218);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(20, 21);
+            label4.TabIndex = 14;
+            label4.Text = "C";
+            label4.Click += label4_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.Window;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(482, 356);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(21, 30);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "°";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            label1.AutoSize = true;
+            label1.BackColor = System.Drawing.SystemColors.Window;
+            label1.Font = new System.Drawing.Font("Segoe UI", 16F);
+            label1.Location = new System.Drawing.Point(482, 356);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(21, 30);
+            label1.TabIndex = 8;
+            label1.Text = "°";
+            label1.Click += label1_Click;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(253, 443);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 32);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Calculate";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            button1.Location = new System.Drawing.Point(253, 443);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(128, 32);
+            button1.TabIndex = 15;
+            button1.Text = "Calculate";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(447, 443);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(134, 32);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "Clear All";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            button2.Location = new System.Drawing.Point(447, 443);
+            button2.Name = "button2";
+            button2.Size = new System.Drawing.Size(134, 32);
+            button2.TabIndex = 16;
+            button2.Text = "Clear All";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // RightTriangle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "RightTriangle";
-            this.Size = new System.Drawing.Size(652, 494);
-            this.Load += new System.EventHandler(this.RightTriangle_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(button2);
+            Controls.Add(button1);
+            Controls.Add(label4);
+            Controls.Add(textBox4);
+            Controls.Add(label3);
+            Controls.Add(textBox3);
+            Controls.Add(label2);
+            Controls.Add(textBox2);
+            Controls.Add(label1);
+            Controls.Add(textBox1);
+            Controls.Add(radioButton3);
+            Controls.Add(radioButton2);
+            Controls.Add(radioButton1);
+            Controls.Add(pictureBox1);
+            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            Name = "RightTriangle";
+            Size = new System.Drawing.Size(652, 494);
+            Load += RightTriangle_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
