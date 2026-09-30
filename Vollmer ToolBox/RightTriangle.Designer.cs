@@ -56,7 +56,7 @@ namespace Vollmer_ToolBox
             // 
             // textBox1
             // 
-            textBox1.Location = new System.Drawing.Point(401, 356);
+            textBox1.Location = new System.Drawing.Point(416, 375);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
             textBox1.Size = new System.Drawing.Size(75, 23);
@@ -129,7 +129,7 @@ namespace Vollmer_ToolBox
             label1.AutoSize = true;
             label1.BackColor = System.Drawing.SystemColors.Window;
             label1.Font = new System.Drawing.Font("Segoe UI", 16F);
-            label1.Location = new System.Drawing.Point(482, 356);
+            label1.Location = new System.Drawing.Point(497, 375);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(21, 30);
             label1.TabIndex = 8;

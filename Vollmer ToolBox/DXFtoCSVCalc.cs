@@ -54,7 +54,7 @@ namespace Vollmer_ToolBox
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 // 2. Set options (Optional)
-                openFileDialog.InitialDirectory = @"C:\Users\baileyd\OneDrive - Vollmer of America PGH\Desktop\DXFs\Erosion Machines";                    // Default starting folder
+                openFileDialog.InitialDirectory = @"C:\";                    // Default starting folder
 
                 //Force the browse window to ONLY show .dxf files by default
                 openFileDialog.Filter = "DXF files (*.dxf)|*.dxf"; // File types allowed
