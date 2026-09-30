@@ -1,370 +1,611 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Vollmer_ToolBox
 {
-    
-
     public partial class RightTriangle : UserControl
-
     {
-        double legA = 0;
-        double legB = 0;
-        double legC = 0;
-        double angle = 0;
+        // Prevent TextChanged events from clearing values
+        // while the program is performing a calculation.
+        private bool isCalculating = false;
 
-
-
-
+        // Keep track of the two values entered by the user.
+        // This allows the calculator to distinguish user input
+        // from values it calculated.
+        private bool userEnteredAngle = false;
+        private bool userEnteredA = false;
+        private bool userEnteredB = false;
+        private bool userEnteredC = false;
 
         public RightTriangle()
         {
             InitializeComponent();
+
             NumericTextBoxHelper.Attach(textBox1);
             NumericTextBoxHelper.Attach(textBox2);
             NumericTextBoxHelper.Attach(textBox3);
             NumericTextBoxHelper.Attach(textBox4);
-        }
-        private void zeroVariable()
-        {
-            legA = 0;
-            legB = 0;
-            legC = 0;
-            angle = 0;
 
+            InitializeForm();
         }
+
+        // =========================================================
+        // INITIALIZATION
+        // =========================================================
+
         private void InitializeForm()
         {
-            radioButton1.Checked = false;
-            radioButton2.Checked = false;
-            radioButton3.Checked = false;
-            textBox1.Text = string.Empty;
-            textBox2.Text = string.Empty;
-            textBox3.Text = string.Empty;
-            textBox4.Text = string.Empty;
-            textBox4.ReadOnly = true;
-            textBox1.ReadOnly = true;
-            textBox2.ReadOnly = true;
-            textBox3.ReadOnly = true;
-        }
-        private void RightTriangle_Load(object sender, EventArgs e)
-        {
+            isCalculating = false;
 
-        }
+            userEnteredAngle = false;
+            userEnteredA = false;
+            userEnteredB = false;
+            userEnteredC = false;
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            textBox1.Text = string.Empty;
-            textBox2.Text = string.Empty;
-            textBox3.Text = string.Empty;
-            textBox4.Text = string.Empty;
-            textBox4.ReadOnly = true;
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+
+            // All four boxes are available for user input.
             textBox1.ReadOnly = false;
             textBox2.ReadOnly = false;
             textBox3.ReadOnly = false;
-        }
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            textBox1.Text = string.Empty;
-            textBox2.Text = string.Empty;
-            textBox3.Text = string.Empty;
-            textBox4.Text = string.Empty;
             textBox4.ReadOnly = false;
-            textBox1.ReadOnly = false;
-            textBox2.ReadOnly = true;
-            textBox3.ReadOnly = false;
+
+            textBox1.Focus();
         }
 
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        // =========================================================
+        // RESET
+        // =========================================================
+
+        private void ResetCalculator()
         {
-            textBox1.Text = string.Empty;
-            textBox2.Text = string.Empty;
-            textBox3.Text = string.Empty;
-            textBox4.Text = string.Empty;
-            textBox4.ReadOnly = false;
-            textBox1.ReadOnly = false;
-            textBox2.ReadOnly = false;
-            textBox3.ReadOnly = true;
+            isCalculating = true;
+
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+
+            userEnteredAngle = false;
+            userEnteredA = false;
+            userEnteredB = false;
+            userEnteredC = false;
+
+            isCalculating = false;
+
+            textBox1.Focus();
         }
 
+        // =========================================================
+        // UNIT CONVERSION
+        // =========================================================
 
-        private void tan() // Function for Tangent selection
+        private double DegreesToRadians(double degrees)
         {
-            textBox4.ReadOnly = true;
-
-            if (textBox1.ReadOnly == true)
-            {
-                textBox1.Text = "";
-            }
-            else if (textBox2.ReadOnly == true)
-            {
-                textBox2.Text = "";
-            }
-            else if (textBox3.ReadOnly == true)
-            {
-                textBox3.Text = "";
-            }
-            else
-            {
-                textBox1.ReadOnly = false;
-                textBox2.ReadOnly = false;
-                textBox3.ReadOnly = false;
-
-            }
-            if (textBox1.Text == "" && textBox2.Text == "" || textBox3.Text == "" && textBox2.Text == "" || textBox1.Text == "" && textBox3.Text == "")
-            {
-                MessageBox.Show("Incomplete Data");
-            }
-
-
-            else if (textBox1.Text == "")  // Finding the Tangent Angle with known legs
-            {
-                textBox1.ReadOnly = true;
-                textBox2.ReadOnly = false;
-                textBox3.ReadOnly = false;
-                legA = Convert.ToDouble(textBox2.Text);
-                legB = Convert.ToDouble(textBox3.Text);
-                angle = Math.Atan(legB / legA) * 180 / Math.PI;
-                legC = legA / Math.Cos(angle * (Math.PI / 180));
-                textBox1.Text = Convert.ToString(Math.Round(angle, 2));
-                textBox4.Text = Convert.ToString(Math.Round(legC, 4));
-
-            }
-            else if (textBox2.Text == "") // Finding leg A with known B and angle
-            {
-                textBox1.ReadOnly = false;
-                textBox2.ReadOnly = true;
-                textBox3.ReadOnly = false;
-                angle = Convert.ToDouble(textBox1.Text);
-                legB = Convert.ToDouble(textBox3.Text);
-                legA = legB / Math.Tan(angle * (Math.PI / 180));
-                legC = legA / Math.Cos(angle * (Math.PI / 180));
-                textBox2.Text = Convert.ToString(Math.Round(legA, 4));
-                textBox4.Text = Convert.ToString(Math.Round(legC, 4));
-            }
-            else if (textBox3.Text == "") // Finding leg B with known A and angle
-            {
-                textBox1.ReadOnly = false;
-                textBox2.ReadOnly = false;
-                textBox3.ReadOnly = true;
-                angle = Convert.ToDouble(textBox1.Text);
-                legA = Convert.ToDouble(textBox2.Text);
-                legB = legA * Math.Tan(angle * (Math.PI / 180));
-                legC = legA / Math.Cos(angle * (Math.PI / 180));
-                textBox3.Text = Convert.ToString(Math.Round(legB, 4));
-                textBox4.Text = Convert.ToString(Math.Round(legC, 4));
-            }
-
-
+            return degrees * Math.PI / 180.0;
         }
-        private void sin() // Function for sin selection
+
+        private double RadiansToDegrees(double radians)
         {
-            textBox2.ReadOnly = true;
-
-            if (textBox1.ReadOnly == true)
-            {
-                textBox1.Text = "";
-            }
-            else if (textBox3.ReadOnly == true)
-            {
-                textBox3.Text = "";
-            }
-            else if (textBox4.ReadOnly == true)
-            {
-                textBox4.Text = "";
-            }
-            else
-            {
-                textBox1.ReadOnly = false;
-                textBox3.ReadOnly = false;
-                textBox4.ReadOnly = false;
-            }
-            if (textBox1.Text == "" && textBox3.Text == "" || textBox3.Text == "" && textBox4.Text == "" || textBox1.Text == "" && textBox4.Text == "")
-            {
-                MessageBox.Show("Incomplete Data");
-            }
-
-
-            else if (textBox1.Text == "")  // Finding the Sin Angle with known legs
-            {
-                textBox1.ReadOnly = true;
-                textBox3.ReadOnly = false;
-                textBox4.ReadOnly = false;
-                legB = Convert.ToDouble(textBox3.Text);
-                legC = Convert.ToDouble(textBox4.Text);
-                angle = Math.Asin(legB / legC) * 180 / Math.PI;
-                legA = legC * Math.Cos(angle * (Math.PI / 180));
-                textBox1.Text = Convert.ToString(Math.Round(angle, 2));
-                textBox2.Text = Convert.ToString(Math.Round(legA, 4));
-            }
-            else if (textBox4.Text == "") // Finding leg C with known B and angle
-            {
-                textBox1.ReadOnly = false;
-                textBox3.ReadOnly = false;
-                textBox4.ReadOnly = true;
-                angle = Convert.ToDouble(textBox1.Text);
-                legB = Convert.ToDouble(textBox3.Text);
-                legC = legB / Math.Sin(angle * (Math.PI / 180));
-                legA = legC * Math.Cos(angle * (Math.PI / 180));
-                textBox4.Text = Convert.ToString(Math.Round(legC, 4));
-                textBox2.Text = Convert.ToString(Math.Round(legA, 4));
-            }
-            else if (textBox3.Text == "") // Finding leg B with known C and angle
-            {
-                textBox1.ReadOnly = false;
-                textBox3.ReadOnly = true;
-                textBox4.ReadOnly = false;
-                angle = Convert.ToDouble(textBox1.Text);
-                legC = Convert.ToDouble(textBox4.Text);
-                legB = legC * Math.Sin(angle * (Math.PI / 180));
-                legA = legC * Math.Cos(angle * (Math.PI / 180));
-                textBox3.Text = Convert.ToString(Math.Round(legB, 4));
-                textBox2.Text = Convert.ToString(Math.Round(legA, 4));
-            }
-
+            return radians * 180.0 / Math.PI;
         }
-        private void cos()
+
+        // =========================================================
+        // VALIDATION
+        // =========================================================
+
+        private bool TryGetNumber(
+            TextBox textBox,
+            string name,
+            out double value)
         {
-            textBox3.ReadOnly = true;
+            value = 0;
 
-            if (textBox1.ReadOnly == true)
+            if (string.IsNullOrWhiteSpace(textBox.Text))
             {
-                textBox1.Text = "";
-            }
-            else if (textBox2.ReadOnly == true)
-            {
-                textBox2.Text = "";
-            }
-            else if (textBox4.ReadOnly == true)
-            {
-                textBox4.Text = "";
-            }
-            else
-            {
-                textBox1.ReadOnly = false;
-                textBox2.ReadOnly = false;
-                textBox4.ReadOnly = false;
-            }
-            if (textBox1.Text == "" && textBox2.Text == "" || textBox2.Text == "" && textBox4.Text == "" || textBox1.Text == "" && textBox4.Text == "")
-            {
-                MessageBox.Show("Incomplete Data");
+                return false;
             }
 
+            if (!double.TryParse(textBox.Text, out value))
+            {
+                MessageBox.Show(
+                    $"{name} must contain a valid number.",
+                    "Invalid Input",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
-            else if (textBox1.Text == "")  // Finding the Cos Angle with known legs
-            {
-                textBox1.ReadOnly = true;
-                textBox2.ReadOnly = false;
-                textBox4.ReadOnly = false;
-                legA = Convert.ToDouble(textBox2.Text);
-                legC = Convert.ToDouble(textBox4.Text);
-                angle = Math.Acos(legA / legC) * 180 / Math.PI;
-                legB = legA * Math.Tan(angle * (Math.PI / 180));
-                textBox1.Text = Convert.ToString(Math.Round(angle, 2));
-                textBox3.Text = Convert.ToString(Math.Round(legB, 4));
+                textBox.Focus();
+
+                return false;
             }
-            else if (textBox4.Text == "") // Finding leg C with known A and angle
+
+            if (double.IsNaN(value) || double.IsInfinity(value))
             {
-                textBox1.ReadOnly = false;
-                textBox2.ReadOnly = false;
-                textBox4.ReadOnly = true;
-                angle = Convert.ToDouble(textBox1.Text);
-                legA = Convert.ToDouble(textBox2.Text);
-                legC = legA / Math.Cos(angle * (Math.PI / 180));
-                legB = legA * Math.Tan(angle * (Math.PI / 180));
-                textBox4.Text = Convert.ToString(Math.Round(legC, 4));
-                textBox3.Text = Convert.ToString(Math.Round(legB, 4));
+                MessageBox.Show(
+                    $"{name} contains an invalid value.",
+                    "Invalid Input",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                textBox.Focus();
+
+                return false;
             }
-            else if (textBox2.Text == "") // Finding leg A with known C and angle
-            {
-                textBox1.ReadOnly = false;
-                textBox2.ReadOnly = true;
-                textBox4.ReadOnly = false;
-                angle = Convert.ToDouble(textBox1.Text);
-                legC = Convert.ToDouble(textBox4.Text);
-                legA = legC * Math.Cos(angle * (Math.PI / 180));
-                legB = legA * Math.Tan(angle * (Math.PI / 180));
-                textBox2.Text = Convert.ToString(Math.Round(legA, 4));
-                textBox3.Text = Convert.ToString(Math.Round(legB, 4));
-            }
+
+            return true;
         }
-        private void calculation()
+
+        private bool ValidateSide(double value, string name)
         {
+            if (value <= 0)
+            {
+                MessageBox.Show(
+                    $"{name} must be greater than zero.",
+                    "Invalid Triangle",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
-            if (radioButton1.Checked == true)
-            {
-                tan();
-            }
-            else if (radioButton2.Checked == true)
-            {
-                sin();
-
-            }
-            else if (radioButton3.Checked == true)
-            {
-                cos();
+                return false;
             }
 
+            return true;
+        }
 
-            else
+        private bool ValidateAngle(double angle)
+        {
+            if (angle <= 0 || angle >= 90)
             {
-                MessageBox.Show("Please select an Angle");
+                MessageBox.Show(
+                    "The angle must be greater than 0° and less than 90°.",
+                    "Invalid Angle",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return false;
+            }
+
+            return true;
+        }
+
+        // =========================================================
+        // CALCULATE
+        // =========================================================
+
+        private void CalculateTriangle()
+        {
+            // -----------------------------------------------------
+            // Read whatever is currently in the textboxes.
+            // -----------------------------------------------------
+
+            bool hasAngle = TryGetNumber(
+                textBox1,
+                "Angle",
+                out double angle);
+
+            bool hasA = TryGetNumber(
+                textBox2,
+                "Leg A",
+                out double a);
+
+            bool hasB = TryGetNumber(
+                textBox3,
+                "Leg B",
+                out double b);
+
+            bool hasC = TryGetNumber(
+                textBox4,
+                "Hypotenuse C",
+                out double c);
+
+            // -----------------------------------------------------
+            // Count values that were actually entered by the user.
+            // -----------------------------------------------------
+
+            int userInputCount = 0;
+
+            if (userEnteredAngle)
+                userInputCount++;
+
+            if (userEnteredA)
+                userInputCount++;
+
+            if (userEnteredB)
+                userInputCount++;
+
+            if (userEnteredC)
+                userInputCount++;
+
+            // -----------------------------------------------------
+            // We need exactly two user inputs.
+            // -----------------------------------------------------
+
+            if (userInputCount != 2)
+            {
+                MessageBox.Show(
+                    "Please enter exactly two values.\n\n" +
+                    "You can enter any two of:\n" +
+                    "• Angle\n" +
+                    "• Leg A\n" +
+                    "• Leg B\n" +
+                    "• Hypotenuse C",
+                    "Input Required",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            isCalculating = true;
+
+            try
+            {
+                // =================================================
+                // CASE 1
+                // ANGLE + A
+                // Calculate B + C
+                // =================================================
+
+                if (userEnteredAngle && userEnteredA)
+                {
+                    if (!ValidateAngle(angle))
+                        return;
+
+                    if (!ValidateSide(a, "Leg A"))
+                        return;
+
+                    double radians = DegreesToRadians(angle);
+
+                    b = a * Math.Tan(radians);
+                    c = a / Math.Cos(radians);
+
+                    textBox3.Text = b.ToString("F4");
+                    textBox4.Text = c.ToString("F4");
+
+                    return;
+                }
+
+                // =================================================
+                // CASE 2
+                // ANGLE + B
+                // Calculate A + C
+                // =================================================
+
+                if (userEnteredAngle && userEnteredB)
+                {
+                    if (!ValidateAngle(angle))
+                        return;
+
+                    if (!ValidateSide(b, "Leg B"))
+                        return;
+
+                    double radians = DegreesToRadians(angle);
+
+                    a = b / Math.Tan(radians);
+                    c = b / Math.Sin(radians);
+
+                    textBox2.Text = a.ToString("F4");
+                    textBox4.Text = c.ToString("F4");
+
+                    return;
+                }
+
+                // =================================================
+                // CASE 3
+                // ANGLE + C
+                // Calculate A + B
+                // =================================================
+
+                if (userEnteredAngle && userEnteredC)
+                {
+                    if (!ValidateAngle(angle))
+                        return;
+
+                    if (!ValidateSide(c, "Hypotenuse C"))
+                        return;
+
+                    double radians = DegreesToRadians(angle);
+
+                    a = c * Math.Cos(radians);
+                    b = c * Math.Sin(radians);
+
+                    textBox2.Text = a.ToString("F4");
+                    textBox3.Text = b.ToString("F4");
+
+                    return;
+                }
+
+                // =================================================
+                // CASE 4
+                // A + B
+                // Calculate Angle + C
+                // =================================================
+
+                if (userEnteredA && userEnteredB)
+                {
+                    if (!ValidateSide(a, "Leg A"))
+                        return;
+
+                    if (!ValidateSide(b, "Leg B"))
+                        return;
+
+                    angle = RadiansToDegrees(
+                        Math.Atan2(b, a));
+
+                    c = Math.Sqrt(
+                        (a * a) + (b * b));
+
+                    textBox1.Text = angle.ToString("F2");
+                    textBox4.Text = c.ToString("F4");
+
+                    return;
+                }
+
+                // =================================================
+                // CASE 5
+                // A + C
+                // Calculate Angle + B
+                // =================================================
+
+                if (userEnteredA && userEnteredC)
+                {
+                    if (!ValidateSide(a, "Leg A"))
+                        return;
+
+                    if (!ValidateSide(c, "Hypotenuse C"))
+                        return;
+
+                    if (a >= c)
+                    {
+                        MessageBox.Show(
+                            "Leg A must be smaller than Hypotenuse C.",
+                            "Invalid Triangle",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+
+                        return;
+                    }
+
+                    angle = RadiansToDegrees(
+                        Math.Acos(a / c));
+
+                    b = Math.Sqrt(
+                        (c * c) - (a * a));
+
+                    textBox1.Text = angle.ToString("F2");
+                    textBox3.Text = b.ToString("F4");
+
+                    return;
+                }
+
+                // =================================================
+                // CASE 6
+                // B + C
+                // Calculate Angle + A
+                // =================================================
+
+                if (userEnteredB && userEnteredC)
+                {
+                    if (!ValidateSide(b, "Leg B"))
+                        return;
+
+                    if (!ValidateSide(c, "Hypotenuse C"))
+                        return;
+
+                    if (b >= c)
+                    {
+                        MessageBox.Show(
+                            "Leg B must be smaller than Hypotenuse C.",
+                            "Invalid Triangle",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+
+                        return;
+                    }
+
+                    angle = RadiansToDegrees(
+                        Math.Asin(b / c));
+
+                    a = Math.Sqrt(
+                        (c * c) - (b * b));
+
+                    textBox1.Text = angle.ToString("F2");
+                    textBox2.Text = a.ToString("F4");
+
+                    return;
+                }
+            }
+            finally
+            {
+                isCalculating = false;
             }
         }
 
+
+        // =========================================================
+        // HANDLE USER INPUT
+        // =========================================================
+
+        private void HandleUserInputChange(TextBox changedBox)
+        {
+            /*
+             * If the user changes a textbox after a calculation,
+             * we need to assume that the old calculated values
+             * are no longer valid.
+             *
+             * We therefore start a new calculation.
+             */
+
+            // If the user has already entered two values,
+            // changing one of them should start a fresh calculation.
+            int currentUserInputs = 0;
+
+            if (userEnteredAngle)
+                currentUserInputs++;
+
+            if (userEnteredA)
+                currentUserInputs++;
+
+            if (userEnteredB)
+                currentUserInputs++;
+
+            if (userEnteredC)
+                currentUserInputs++;
+
+            // -----------------------------------------------------
+            // Identify which box the user changed.
+            // -----------------------------------------------------
+
+            if (changedBox == textBox1)
+                userEnteredAngle = true;
+
+            else if (changedBox == textBox2)
+                userEnteredA = true;
+
+            else if (changedBox == textBox3)
+                userEnteredB = true;
+
+            else if (changedBox == textBox4)
+                userEnteredC = true;
+
+            // -----------------------------------------------------
+            // If this is a fresh calculation and two inputs
+            // haven't already been established, we're done.
+            // -----------------------------------------------------
+
+            currentUserInputs = 0;
+
+            if (userEnteredAngle)
+                currentUserInputs++;
+
+            if (userEnteredA)
+                currentUserInputs++;
+
+            if (userEnteredB)
+                currentUserInputs++;
+
+            if (userEnteredC)
+                currentUserInputs++;
+
+            // -----------------------------------------------------
+            // If the user is starting a new calculation after
+            // everything was previously calculated, clear the
+            // generated values.
+            // -----------------------------------------------------
+
+            if (currentUserInputs > 2)
+            {
+                StartNewCalculation(changedBox);
+            }
+        }
+
+        // =========================================================
+        // START A NEW CALCULATION
+        // =========================================================
+
+        private void StartNewCalculation(TextBox changedBox)
+        {
+            isCalculating = true;
+
+            /*
+             * The textbox that was changed is considered the
+             * first input of the new calculation.
+             */
+
+            string newValue = changedBox.Text;
+
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+
+            // Reset input tracking.
+            userEnteredAngle = false;
+            userEnteredA = false;
+            userEnteredB = false;
+            userEnteredC = false;
+
+            // Put the changed value back.
+            changedBox.Text = newValue;
+
+            if (changedBox == textBox1)
+                userEnteredAngle = true;
+
+            else if (changedBox == textBox2)
+                userEnteredA = true;
+
+            else if (changedBox == textBox3)
+                userEnteredB = true;
+
+            else if (changedBox == textBox4)
+                userEnteredC = true;
+
+            isCalculating = false;
+        }
+
+        // =========================================================
+        // BUTTONS
+        // =========================================================
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            zeroVariable();
-            calculation();
+            CalculateTriangle();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            zeroVariable();
-            InitializeForm();
-
+            ResetCalculator();
         }
 
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        // =========================================================
+        // LOAD
+        // =========================================================
+
+        private void RightTriangle_Load(object sender, EventArgs e)
         {
-            
- 
         }
 
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        // These can remain if they are connected in the Designer.
+        private void label1_Click(object sender, EventArgs e)
         {
-
-
         }
 
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        private void label4_Click(object sender, EventArgs e)
         {
-       
-
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox3_TextChanged_1(object sender, EventArgs e)
         {
-    
+            if (isCalculating)
+                return;
+
+            HandleUserInputChange(textBox3);
+        }
+
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        {
+            if (isCalculating)
+                return;
+
+            HandleUserInputChange(textBox2);
+        }
+
+        private void textBox4_TextChanged_1(object sender, EventArgs e)
+        {
+            if (isCalculating)
+                return;
+
+            HandleUserInputChange(textBox4);
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+            if (isCalculating)
+                return;
+
+            HandleUserInputChange(textBox1);
         }
     }
 }

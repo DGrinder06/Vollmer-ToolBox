@@ -30,10 +30,7 @@ namespace Vollmer_ToolBox
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RightTriangle));
-            radioButton1 = new System.Windows.Forms.RadioButton();
             pictureBox1 = new System.Windows.Forms.PictureBox();
-            radioButton2 = new System.Windows.Forms.RadioButton();
-            radioButton3 = new System.Windows.Forms.RadioButton();
             textBox1 = new System.Windows.Forms.TextBox();
             textBox2 = new System.Windows.Forms.TextBox();
             label2 = new System.Windows.Forms.Label();
@@ -47,18 +44,6 @@ namespace Vollmer_ToolBox
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new System.Drawing.Point(58, 48);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new System.Drawing.Size(102, 19);
-            radioButton1.TabIndex = 1;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Tangent Angle";
-            radioButton1.UseVisualStyleBackColor = true;
-            radioButton1.CheckedChanged += radioButton1_CheckedChanged;
-            // 
             // pictureBox1
             // 
             pictureBox1.BackColor = System.Drawing.SystemColors.Window;
@@ -69,30 +54,6 @@ namespace Vollmer_ToolBox
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new System.Drawing.Point(286, 48);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new System.Drawing.Size(75, 19);
-            radioButton2.TabIndex = 3;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Sin Angle";
-            radioButton2.UseVisualStyleBackColor = true;
-            radioButton2.CheckedChanged += radioButton2_CheckedChanged;
-            // 
-            // radioButton3
-            // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new System.Drawing.Point(502, 48);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new System.Drawing.Size(79, 19);
-            radioButton3.TabIndex = 5;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "Cos Angle";
-            radioButton3.UseVisualStyleBackColor = true;
-            radioButton3.CheckedChanged += radioButton3_CheckedChanged;
-            // 
             // textBox1
             // 
             textBox1.Location = new System.Drawing.Point(401, 356);
@@ -100,7 +61,7 @@ namespace Vollmer_ToolBox
             textBox1.ReadOnly = true;
             textBox1.Size = new System.Drawing.Size(75, 23);
             textBox1.TabIndex = 7;
-            textBox1.KeyPress += textBox1_KeyPress;
+            textBox1.TextChanged += textBox1_TextChanged_1;
             // 
             // textBox2
             // 
@@ -109,7 +70,7 @@ namespace Vollmer_ToolBox
             textBox2.ReadOnly = true;
             textBox2.Size = new System.Drawing.Size(112, 23);
             textBox2.TabIndex = 9;
-            textBox2.KeyPress += textBox2_KeyPress;
+            textBox2.TextChanged += textBox2_TextChanged_1;
             // 
             // label2
             // 
@@ -129,7 +90,7 @@ namespace Vollmer_ToolBox
             textBox3.ReadOnly = true;
             textBox3.Size = new System.Drawing.Size(89, 23);
             textBox3.TabIndex = 11;
-            textBox3.KeyPress += textBox3_KeyPress;
+            textBox3.TextChanged += textBox3_TextChanged_1;
             // 
             // label3
             // 
@@ -149,7 +110,7 @@ namespace Vollmer_ToolBox
             textBox4.ReadOnly = true;
             textBox4.Size = new System.Drawing.Size(112, 23);
             textBox4.TabIndex = 13;
-            textBox4.KeyPress += textBox4_KeyPress;
+            textBox4.TextChanged += textBox4_TextChanged_1;
             // 
             // label4
             // 
@@ -209,9 +170,6 @@ namespace Vollmer_ToolBox
             Controls.Add(textBox2);
             Controls.Add(label1);
             Controls.Add(textBox1);
-            Controls.Add(radioButton3);
-            Controls.Add(radioButton2);
-            Controls.Add(radioButton1);
             Controls.Add(pictureBox1);
             Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             Name = "RightTriangle";
@@ -224,11 +182,7 @@ namespace Vollmer_ToolBox
         }
 
         #endregion
-
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
