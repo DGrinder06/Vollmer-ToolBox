@@ -54,7 +54,7 @@ namespace Vollmer_ToolBox
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 // 2. Set options (Optional)
-                openFileDialog.InitialDirectory = @"C:\";                    // Default starting folder
+                openFileDialog.InitialDirectory = @"C:\";// Default starting folder
 
                 //Force the browse window to ONLY show .dxf files by default
                 openFileDialog.Filter = "DXF files (*.dxf)|*.dxf"; // File types allowed
@@ -614,7 +614,7 @@ namespace Vollmer_ToolBox
 
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred during conversion: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred during conversion: {ex.Message} Make sure the dxf file is 2007", "Error",  MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
