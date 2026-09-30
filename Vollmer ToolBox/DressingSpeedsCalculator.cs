@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Web;
 using System.Windows.Forms;
 
 namespace Vollmer_ToolBox
@@ -69,9 +70,18 @@ namespace Vollmer_ToolBox
         //calculation
         private void calculation()
         {
-            string machine = comboBox1.SelectedItem.ToString();
-            int indexNumber = comboBox1.FindString(machine);
+            
+            string machine;
+            int indexNumber;
 
+            if (comboBox1.SelectedItem == null)
+            {
+                comboBox1.Text = "Rush Wheel Dresser";
+                comboBox1.SelectedItem = 2;
+            }
+            machine = comboBox1.SelectedItem.ToString();
+            indexNumber = comboBox1.FindString(machine);
+          
 
             checkbox = checkBox1.Checked;
             if (checkbox)
