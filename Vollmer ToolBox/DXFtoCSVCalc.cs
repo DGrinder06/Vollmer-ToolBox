@@ -177,49 +177,97 @@ namespace Vollmer_ToolBox
                     double dy;
                     double lineAngleRadians;
                     double lineAngle;
+                    double tanAngle;
+
+                    const double tolerance = 0.000001;
+
+                    dx = startX - endX;
+                    dy = startY - endY;
 
                     if (AlternateRadioButton.Checked)
                     {
-                        dx = endX - startX;
-                        dy = endY - startY;
-                        lineAngleRadians = Math.Atan2(dy, dx);
-                        lineAngle = lineAngleRadians * -180.0 / Math.PI;
+
+                        if (dx > 0 && dy < 0)
+                        {
+                            lineAngleRadians = Math.Atan2(dx, dy);
+
+                        }
+                        else if (dx < 0 && dy < 0)
+                        {
+                            lineAngleRadians = Math.Atan2(-dy, -dx);
+
+                        }
+
+                        else
+                        {
+                            lineAngleRadians = Math.Atan2(dy, dx);
+                        }
+
+
+                        lineAngle = (lineAngleRadians * -180 / Math.PI );
+
+
+                        if (Math.Abs(dy) < tolerance)
+                        {
+                            lineAngle = -90.0;
+                        }
+
+                        else if (Math.Abs(dx) < tolerance)
+                        {
+                            if (dy > 0)
+                                lineAngle = 0.0;
+                            else
+                                lineAngle = -180.0;
+                        }
+
                     }
                     else
                     {
-                        dx = startX - endX;
-                        dy = startY - endY;
-                        lineAngleRadians = Math.Atan2(dy, dx);
-                        lineAngle = lineAngleRadians * 180.0 / Math.PI;
+
+                        if (dx < 0 && dy > 0)
+                        {
+                            lineAngleRadians = Math.Atan2(dx, dy);
+
+                        }
+                        else if (dx > 0 && dy > 0)
+                        {
+                            lineAngleRadians = Math.Atan2(-dy, -dx);
+
+                        }
+
+                        else
+                        { 
+                            lineAngleRadians = Math.Atan2(dy, dx); 
+                        }
+
+                            
+                        lineAngle = (lineAngleRadians * 180 / Math.PI);
+                        
+                        if (Math.Abs(dy) < tolerance)
+                        {
+                            lineAngle = -90.0;
+                        }
+                        else if (Math.Abs(dx) < tolerance)
+                        {
+                            if (dy > 0)
+                                lineAngle = 0.0;
+                            else
+                                lineAngle = -180.0;
+                        }
+
                     }
                 
+                        tanAngle = Math.Round(lineAngle, 3);
                     
-                      if (lineAngle == 0)
-                        {
-                        lineAngle = -lineAngle - 90;
-                        }
-                    
-                        if (lineAngle == 180)
-                        {
-                            lineAngle = -lineAngle + 90;
-                        }
-                        if (lineAngle == -180)
-                    {
-                        lineAngle = lineAngle + 90;
-                    }
-                    
-
-                    lineAngle = Math.Round(lineAngle, 3);
-
 
                     if (uniquePoints.Add((endX, endY, endZ)))
                     {
-                        points.Add(("Line", startX, startY, startZ, 0.0, lineAngle));
+                        points.Add(("Line", startX, startY, startZ, 0.0, tanAngle));
                     }
 
                     if (uniquePoints.Add((startX, startY, startZ)))
                     {
-                        points.Add(("Line", endX, endY, endZ, 0.0, lineAngle));
+                        points.Add(("Line", endX, endY, endZ, 0.0, tanAngle));
                     }
                 }
 
@@ -329,8 +377,8 @@ namespace Vollmer_ToolBox
                     //------------------------------
                     // Is concave and radius too big
                     //------------------------------
-                    bool concave = (centerY > startY || centerY > endY);
-                    bool rightCenter = (centerX < startX);
+                    bool concave = (startAngle >= 180);
+                    bool rightCenter = (endAngle > 90);
 
                     if (concave && wheelRadius >= radius)
                     {
@@ -345,7 +393,6 @@ namespace Vollmer_ToolBox
                     double arcAngle = endAngle - startAngle;
 
 
-                    arcAngle = Math.Abs(arcAngle);
 
 
                     double ratio = Math.Max(0.0, Math.Min(1.0, maxPointDistance / (2.0 * radius)));
@@ -400,13 +447,13 @@ namespace Vollmer_ToolBox
                         {
                             if (rightCenter)
                             {
-                                startTangentAngle = startAngle + 90;
+                                startTangentAngle = startAngle - 90;
                                 tangentAngle = startTangentAngle - (i * angleIncrement);
                                 tangentAngle = Math.Round(-tangentAngle, 3);
                             }
                             else
                             {
-                                startTangentAngle = startAngle - 180.0;
+                                startTangentAngle = startAngle - 180;
                                 tangentAngle = startTangentAngle + (i * angleIncrement);
                                 tangentAngle = Math.Round(tangentAngle, 3);
                             }
@@ -424,15 +471,15 @@ namespace Vollmer_ToolBox
                         {
                             if (rightCenter)
                             {
-                                startTangentAngle = startAngle - 90;
+                                startTangentAngle = startAngle - 180;
                                 tangentAngle = startTangentAngle - (i * angleIncrement);
                                 tangentAngle = Math.Round(tangentAngle, 3);
                             }
 
-                            else
+                            else 
                             {
-                                startTangentAngle = startAngle - 180.0;
-                                tangentAngle = startTangentAngle - (i * angleIncrement);
+                                startTangentAngle = startAngle  ;
+                                tangentAngle = -startTangentAngle - (i * angleIncrement);
                                 tangentAngle = Math.Round(tangentAngle, 3);
                             }
                         }
