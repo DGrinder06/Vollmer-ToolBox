@@ -263,25 +263,25 @@ namespace Vollmer_ToolBox
                             lineAngle = (lineAngleRadians * 180 / Math.PI) - 180;
 
                         }
-                        
-
-
-
-                        if (Math.Abs(dy) < tolerance)
-                        {
-                            lineAngle = -90.0;
-                        }
-                        else if (Math.Abs(dx) < tolerance)
-                        {
-                            if (dy > 0)
-                                lineAngle = 0.0;
-                            else
-                                lineAngle = -180.0;
-                        }
-
+                    
                     }
-                
-                        tanAngle = Math.Round(lineAngle, 3);
+                    if (Math.Abs(dy) < tolerance)
+                    {
+                        lineAngle = -90.0;
+                    }
+                    else if (Math.Abs(dx) < tolerance)
+                    {
+                        MessageBox.Show(
+                            "Please insure a slight angle in the vertical direction on your DXF.",
+                            "Invalid Distance",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+
+                        return;
+                    }
+
+
+                    tanAngle = Math.Round(lineAngle, 3);
                     
 
                     if (uniquePoints.Add((endX, endY, endZ)))
