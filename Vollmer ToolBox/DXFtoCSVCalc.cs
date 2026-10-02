@@ -415,7 +415,10 @@ namespace Vollmer_ToolBox
 
 
                     double arcAngle = endAngle - startAngle;
-
+                    if (arcAngle < 0)
+                    {
+                        arcAngle += 360.0;
+                    }
 
 
 
