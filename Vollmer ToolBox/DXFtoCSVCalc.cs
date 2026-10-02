@@ -190,21 +190,32 @@ namespace Vollmer_ToolBox
                         if (dx > 0 && dy < 0)
                         {
                             lineAngleRadians = Math.Atan2(dx, dy);
-
+                            lineAngle = (lineAngleRadians * 180 / Math.PI);
+                            lineAngle = -lineAngle;
                         }
                         else if (dx < 0 && dy < 0)
                         {
                             lineAngleRadians = Math.Atan2(-dy, -dx);
+                            lineAngle = (lineAngleRadians * 180 / Math.PI - 90);
+
+                        }
+
+                        else if (dx < 0 && dy > 0)
+                        {
+                            lineAngleRadians = Math.Atan2(dx, dy);
+                            lineAngle = (lineAngleRadians * 180 / Math.PI) -90;
 
                         }
 
                         else
                         {
                             lineAngleRadians = Math.Atan2(dy, dx);
+                            lineAngle = (lineAngleRadians * 180 / Math.PI );
+                            lineAngle = -lineAngle;
                         }
 
 
-                        lineAngle = (lineAngleRadians * -180 / Math.PI );
+                        
 
 
                         if (Math.Abs(dy) < tolerance)
@@ -227,22 +238,35 @@ namespace Vollmer_ToolBox
                         if (dx < 0 && dy > 0)
                         {
                             lineAngleRadians = Math.Atan2(dx, dy);
+                            lineAngle = (lineAngleRadians * 180 / Math.PI);
 
                         }
                         else if (dx > 0 && dy > 0)
                         {
                             lineAngleRadians = Math.Atan2(-dy, -dx);
+                            lineAngle = (lineAngleRadians * 180 / Math.PI);
+
+                        }
+
+                        else if (dx < 0 && dy < 0)
+                        {
+                            lineAngleRadians = Math.Atan2(-dy, -dx);
+                            lineAngle = (lineAngleRadians * 180 / Math.PI) + 90;
+                            lineAngle = -lineAngle;
 
                         }
 
                         else
-                        { 
-                            lineAngleRadians = Math.Atan2(dy, dx); 
-                        }
+                        {
 
-                            
-                        lineAngle = (lineAngleRadians * 180 / Math.PI);
+                            lineAngleRadians = Math.Atan2(dx, dy);
+                            lineAngle = (lineAngleRadians * 180 / Math.PI) - 180;
+
+                        }
                         
+
+
+
                         if (Math.Abs(dy) < tolerance)
                         {
                             lineAngle = -90.0;
@@ -447,9 +471,9 @@ namespace Vollmer_ToolBox
                         {
                             if (rightCenter)
                             {
-                                startTangentAngle = startAngle - 90;
-                                tangentAngle = startTangentAngle - (i * angleIncrement);
-                                tangentAngle = Math.Round(-tangentAngle, 3);
+                                startTangentAngle = startAngle - 180;
+                                tangentAngle = startTangentAngle + (i * angleIncrement);
+                                tangentAngle = Math.Round(tangentAngle, 3);
                             }
                             else
                             {
