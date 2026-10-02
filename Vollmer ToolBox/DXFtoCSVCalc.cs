@@ -152,6 +152,8 @@ namespace Vollmer_ToolBox
                     CenterOffsetTextBox.Text = "0";
                 }
 
+                
+
                 // 3. Define the destination CSV file path (saves it in the same folder)
                 var points = new List<(string EntityType, double X, double Y, double Z, double Radius, double TangentAngle)>();
 
@@ -319,7 +321,7 @@ namespace Vollmer_ToolBox
                         out maxPointDistance))
                     {
                         MessageBox.Show(
-                            "Please enter a valid point distance, such as 0.5.",
+                            "Please enter a valid Radius increment, such as 0.5.",
                             "Invalid Distance",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
@@ -342,7 +344,7 @@ namespace Vollmer_ToolBox
                 if (maxPointDistance >= 1.0)
                 {
                     MessageBox.Show(
-                        "Maximum point distance must be less than 1.0.",
+                        "Radius increments must be less than 1.0.",
                         "Invalid Distance",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -537,6 +539,10 @@ namespace Vollmer_ToolBox
                 string csvPath = Path.ChangeExtension(dxfPath, ".csv");
                 var sb = new StringBuilder();
                 sb.AppendLine("Y;Z;X;A;C;Feed;Theta;Tau");
+
+                File.WriteAllText(csvPath, sb.ToString());
+
+                MessageBox.Show($"File saved successfully:\n\n{csvPath}","File Saved",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
                 foreach (var p in sorted)
                 {
