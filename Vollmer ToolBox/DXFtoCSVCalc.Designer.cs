@@ -47,13 +47,14 @@
             WheelDiameterTextBox = new System.Windows.Forms.TextBox();
             WheelDiameterLabel = new System.Windows.Forms.Label();
             ReverseCheckBox = new System.Windows.Forms.CheckBox();
+            DXFViewerPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)CSVPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CSVdataGridView).BeginInit();
             SuspendLayout();
             // 
             // BrowseButton
             // 
-            BrowseButton.Location = new System.Drawing.Point(687, 260);
+            BrowseButton.Location = new System.Drawing.Point(779, 227);
             BrowseButton.Name = "BrowseButton";
             BrowseButton.Size = new System.Drawing.Size(75, 23);
             BrowseButton.TabIndex = 0;
@@ -63,7 +64,7 @@
             // 
             // DXFPath
             // 
-            DXFPath.Location = new System.Drawing.Point(50, 260);
+            DXFPath.Location = new System.Drawing.Point(142, 223);
             DXFPath.Name = "DXFPath";
             DXFPath.ReadOnly = true;
             DXFPath.Size = new System.Drawing.Size(631, 23);
@@ -71,9 +72,9 @@
             // 
             // CalculateButton
             // 
-            CalculateButton.Location = new System.Drawing.Point(313, 289);
+            CalculateButton.Location = new System.Drawing.Point(438, 252);
             CalculateButton.Name = "CalculateButton";
-            CalculateButton.Size = new System.Drawing.Size(92, 51);
+            CalculateButton.Size = new System.Drawing.Size(92, 37);
             CalculateButton.TabIndex = 3;
             CalculateButton.Text = "Export";
             CalculateButton.UseVisualStyleBackColor = true;
@@ -82,7 +83,7 @@
             // DXFLabel
             // 
             DXFLabel.AutoSize = true;
-            DXFLabel.Location = new System.Drawing.Point(16, 264);
+            DXFLabel.Location = new System.Drawing.Point(108, 223);
             DXFLabel.Name = "DXFLabel";
             DXFLabel.Size = new System.Drawing.Size(28, 15);
             DXFLabel.TabIndex = 4;
@@ -90,7 +91,7 @@
             // 
             // IncrementsTextBox
             // 
-            IncrementsTextBox.Location = new System.Drawing.Point(71, 231);
+            IncrementsTextBox.Location = new System.Drawing.Point(207, 194);
             IncrementsTextBox.Name = "IncrementsTextBox";
             IncrementsTextBox.Size = new System.Drawing.Size(100, 23);
             IncrementsTextBox.TabIndex = 6;
@@ -100,7 +101,7 @@
             // IncrementLabel
             // 
             IncrementLabel.AutoSize = true;
-            IncrementLabel.Location = new System.Drawing.Point(70, 213);
+            IncrementLabel.Location = new System.Drawing.Point(207, 176);
             IncrementLabel.Name = "IncrementLabel";
             IncrementLabel.Size = new System.Drawing.Size(104, 15);
             IncrementLabel.TabIndex = 7;
@@ -108,7 +109,7 @@
             // 
             // ShearAngleBox
             // 
-            ShearAngleBox.Location = new System.Drawing.Point(192, 231);
+            ShearAngleBox.Location = new System.Drawing.Point(326, 194);
             ShearAngleBox.Name = "ShearAngleBox";
             ShearAngleBox.Size = new System.Drawing.Size(100, 23);
             ShearAngleBox.TabIndex = 8;
@@ -119,7 +120,7 @@
             // CAxisLabel
             // 
             CAxisLabel.AutoSize = true;
-            CAxisLabel.Location = new System.Drawing.Point(206, 213);
+            CAxisLabel.Location = new System.Drawing.Point(341, 176);
             CAxisLabel.Name = "CAxisLabel";
             CAxisLabel.Size = new System.Drawing.Size(70, 15);
             CAxisLabel.TabIndex = 9;
@@ -130,7 +131,7 @@
             SpeedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             SpeedComboBox.FormattingEnabled = true;
             SpeedComboBox.Items.AddRange(new object[] { "V1", "V2", "V3", "V4" });
-            SpeedComboBox.Location = new System.Drawing.Point(319, 231);
+            SpeedComboBox.Location = new System.Drawing.Point(446, 194);
             SpeedComboBox.Name = "SpeedComboBox";
             SpeedComboBox.Size = new System.Drawing.Size(84, 23);
             SpeedComboBox.TabIndex = 10;
@@ -139,7 +140,7 @@
             // SpeedLabel
             // 
             SpeedLabel.AutoSize = true;
-            SpeedLabel.Location = new System.Drawing.Point(321, 213);
+            SpeedLabel.Location = new System.Drawing.Point(446, 176);
             SpeedLabel.Name = "SpeedLabel";
             SpeedLabel.Size = new System.Drawing.Size(84, 15);
             SpeedLabel.TabIndex = 11;
@@ -147,7 +148,7 @@
             // 
             // CenterOffsetTextBox
             // 
-            CenterOffsetTextBox.Location = new System.Drawing.Point(434, 231);
+            CenterOffsetTextBox.Location = new System.Drawing.Point(553, 194);
             CenterOffsetTextBox.Name = "CenterOffsetTextBox";
             CenterOffsetTextBox.Size = new System.Drawing.Size(100, 23);
             CenterOffsetTextBox.TabIndex = 12;
@@ -158,7 +159,7 @@
             // CenterOffset
             // 
             CenterOffset.AutoSize = true;
-            CenterOffset.Location = new System.Drawing.Point(447, 213);
+            CenterOffset.Location = new System.Drawing.Point(565, 176);
             CenterOffset.Name = "CenterOffset";
             CenterOffset.Size = new System.Drawing.Size(77, 15);
             CenterOffset.TabIndex = 13;
@@ -167,9 +168,9 @@
             // CSVPictureBox
             // 
             CSVPictureBox.Image = (System.Drawing.Image)resources.GetObject("CSVPictureBox.Image");
-            CSVPictureBox.Location = new System.Drawing.Point(162, 3);
+            CSVPictureBox.Location = new System.Drawing.Point(279, 3);
             CSVPictureBox.Name = "CSVPictureBox";
-            CSVPictureBox.Size = new System.Drawing.Size(404, 207);
+            CSVPictureBox.Size = new System.Drawing.Size(377, 159);
             CSVPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             CSVPictureBox.TabIndex = 14;
             CSVPictureBox.TabStop = false;
@@ -181,19 +182,19 @@
             CSVdataGridView.AllowUserToResizeColumns = false;
             CSVdataGridView.AllowUserToResizeRows = false;
             CSVdataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            CSVdataGridView.Location = new System.Drawing.Point(0, 367);
+            CSVdataGridView.Location = new System.Drawing.Point(0, 295);
             CSVdataGridView.Name = "CSVdataGridView";
             CSVdataGridView.ReadOnly = true;
             CSVdataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             CSVdataGridView.ShowEditingIcon = false;
-            CSVdataGridView.Size = new System.Drawing.Size(782, 269);
+            CSVdataGridView.Size = new System.Drawing.Size(949, 293);
             CSVdataGridView.TabIndex = 15;
             CSVdataGridView.RowPostPaint += CSVdataGridView_RowPostPaint;
             // 
             // AlternateRadioButton
             // 
             AlternateRadioButton.AutoSize = true;
-            AlternateRadioButton.Location = new System.Drawing.Point(94, 305);
+            AlternateRadioButton.Location = new System.Drawing.Point(243, 261);
             AlternateRadioButton.Name = "AlternateRadioButton";
             AlternateRadioButton.Size = new System.Drawing.Size(168, 19);
             AlternateRadioButton.TabIndex = 16;
@@ -206,7 +207,7 @@
             // 
             // WheelDiameterTextBox
             // 
-            WheelDiameterTextBox.Location = new System.Drawing.Point(556, 231);
+            WheelDiameterTextBox.Location = new System.Drawing.Point(673, 194);
             WheelDiameterTextBox.Name = "WheelDiameterTextBox";
             WheelDiameterTextBox.Size = new System.Drawing.Size(100, 23);
             WheelDiameterTextBox.TabIndex = 17;
@@ -217,7 +218,7 @@
             // WheelDiameterLabel
             // 
             WheelDiameterLabel.AutoSize = true;
-            WheelDiameterLabel.Location = new System.Drawing.Point(560, 213);
+            WheelDiameterLabel.Location = new System.Drawing.Point(673, 176);
             WheelDiameterLabel.Name = "WheelDiameterLabel";
             WheelDiameterLabel.Size = new System.Drawing.Size(91, 15);
             WheelDiameterLabel.TabIndex = 18;
@@ -226,7 +227,7 @@
             // ReverseCheckBox
             // 
             ReverseCheckBox.AutoSize = true;
-            ReverseCheckBox.Location = new System.Drawing.Point(476, 306);
+            ReverseCheckBox.Location = new System.Drawing.Point(565, 262);
             ReverseCheckBox.Name = "ReverseCheckBox";
             ReverseCheckBox.Size = new System.Drawing.Size(126, 19);
             ReverseCheckBox.TabIndex = 20;
@@ -234,10 +235,20 @@
             ReverseCheckBox.UseVisualStyleBackColor = true;
             ReverseCheckBox.Click += ReverseCheckBox_Click;
             // 
+            // DXFViewerPanel
+            // 
+            DXFViewerPanel.BackColor = System.Drawing.Color.White;
+            DXFViewerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            DXFViewerPanel.Location = new System.Drawing.Point(0, 587);
+            DXFViewerPanel.Name = "DXFViewerPanel";
+            DXFViewerPanel.Size = new System.Drawing.Size(946, 175);
+            DXFViewerPanel.TabIndex = 21;
+            // 
             // DXFtoCSV
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(DXFViewerPanel);
             Controls.Add(ReverseCheckBox);
             Controls.Add(WheelDiameterLabel);
             Controls.Add(WheelDiameterTextBox);
@@ -257,7 +268,7 @@
             Controls.Add(DXFPath);
             Controls.Add(BrowseButton);
             Name = "DXFtoCSV";
-            Size = new System.Drawing.Size(782, 636);
+            Size = new System.Drawing.Size(946, 765);
             ((System.ComponentModel.ISupportInitialize)CSVPictureBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)CSVdataGridView).EndInit();
             ResumeLayout(false);
@@ -284,5 +295,6 @@
         private System.Windows.Forms.TextBox WheelDiameterTextBox;
         private System.Windows.Forms.Label WheelDiameterLabel;
         private System.Windows.Forms.CheckBox ReverseCheckBox;
+        private System.Windows.Forms.Panel DXFViewerPanel;
     }
 }

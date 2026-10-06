@@ -21,6 +21,14 @@ namespace Vollmer_ToolBox
 {
     public partial class DXFtoCSV : UserControl
     {
+        // ============================================================
+        // PREVIEW DATA
+        // ============================================================
+
+        private List<(string EntityType, double X, double Y, double Z,
+                      double Radius, double TangentAngle)> previewPoints
+            = new List<(string EntityType, double X, double Y, double Z,
+                        double Radius, double TangentAngle)>();
 
 
         // ============================================================
@@ -29,6 +37,7 @@ namespace Vollmer_ToolBox
         public DXFtoCSV()
         {
             InitializeComponent();
+            SetupDXFPreviewPanel();
             CSVdataGridView.RowHeadersWidth = 50;
             CSVdataGridView.RowPostPaint += CSVdataGridView_RowPostPaint;
             NumericTextBoxHelper.Attach(IncrementsTextBox);
@@ -535,6 +544,15 @@ namespace Vollmer_ToolBox
                     sorted = points.OrderByDescending(p => p.X).ToList();
                 }
 
+                // --------------------------------------------------------
+                // Update DXF preview
+                // --------------------------------------------------------
+
+                previewPoints = sorted.ToList();
+
+                DXFViewerPanel.Invalidate();
+
+
                 // 5. Build CSV and write file
                 string csvPath = Path.ChangeExtension(dxfPath, ".csv");
                 var sb = new StringBuilder();
@@ -814,6 +832,252 @@ namespace Vollmer_ToolBox
         {
             ReverseCheckBox1 = !ReverseCheckBox1;
             ReverseCheckBox.Checked = ReverseCheckBox1;
+        }
+
+        private void SetupDXFPreviewPanel()
+        {
+            DXFViewerPanel.BackColor = Color.White;
+            DXFViewerPanel.BorderStyle = BorderStyle.FixedSingle;
+
+            // Enable double buffering to prevent flickering
+            typeof(Panel)
+                .GetProperty("DoubleBuffered",
+                    System.Reflection.BindingFlags.Instance |
+                    System.Reflection.BindingFlags.NonPublic)
+                ?.SetValue(DXFViewerPanel, true, null);
+
+            DXFViewerPanel.Paint += DXFViewerPanel_Paint;
+            DXFViewerPanel.Resize += DXFViewerPanel_Resize;
+        }
+        private void DXFViewerPanel_Resize(object sender, EventArgs e)
+        {
+            DXFViewerPanel.Invalidate();    
+        }
+        // ============================================================
+        // DRAW PREVIEW
+        // ============================================================
+
+        private void DXFViewerPanel_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            g.Clear(Color.White);
+
+            if (previewPoints == null || previewPoints.Count == 0)
+            {
+                using (Font font = new Font("Segoe UI", 10))
+                using (Brush brush = new SolidBrush(Color.Gray))
+                {
+                    string message = "No DXF points generated";
+
+                    SizeF size = g.MeasureString(message, font);
+
+                    g.DrawString(
+                        message,
+                        font,
+                        brush,
+                        (DXFViewerPanel.Width - size.Width) / 2,
+                        (DXFViewerPanel.Height - size.Height) / 2);
+                }
+
+                return;
+            }
+
+
+            // --------------------------------------------------------
+            // Find drawing bounds
+            // --------------------------------------------------------
+
+            double minX = previewPoints.Min(p => p.X);
+            double maxX = previewPoints.Max(p => p.X);
+
+            double minY = previewPoints.Min(p => p.Y);
+            double maxY = previewPoints.Max(p => p.Y);
+
+            double width = maxX - minX;
+            double height = maxY - minY;
+
+            // Prevent division by zero
+            if (width < 0.000001)
+                width = 1;
+
+            if (height < 0.000001)
+                height = 1;
+
+
+            // --------------------------------------------------------
+            // Panel margins
+            // --------------------------------------------------------
+
+            const float margin = 30;
+
+            float availableWidth =
+                DXFViewerPanel.ClientSize.Width - (margin * 2);
+
+            float availableHeight =
+                DXFViewerPanel.ClientSize.Height - (margin * 2);
+
+            if (availableWidth <= 0 || availableHeight <= 0)
+                return;
+
+
+            // --------------------------------------------------------
+            // Calculate scale
+            // --------------------------------------------------------
+
+            double scaleX = availableWidth / width;
+            double scaleY = availableHeight / height;
+
+            // Use the same scale for X and Y so the geometry
+            // does not become distorted.
+            double scale = Math.Min(scaleX, scaleY);
+
+
+            // --------------------------------------------------------
+            // Center the drawing
+            // --------------------------------------------------------
+
+            double drawingWidth = width * scale;
+            double drawingHeight = height * scale;
+
+            double offsetX =
+                (DXFViewerPanel.ClientSize.Width - drawingWidth) / 2.0;
+
+            double offsetY =
+                (DXFViewerPanel.ClientSize.Height - drawingHeight) / 2.0;
+
+
+            // --------------------------------------------------------
+            // Convert DXF coordinates to screen coordinates
+            // --------------------------------------------------------
+
+            PointF ToScreen(double x, double y)
+            {
+                float screenX =
+                    (float)(offsetX + (x - minX) * scale);
+
+                // Windows screen Y increases downward,
+                // DXF Y increases upward.
+                float screenY =
+                    (float)(offsetY + (maxY - y) * scale);
+
+                return new PointF(screenX, screenY);
+            }
+
+
+            // --------------------------------------------------------
+            // Draw axes
+            // --------------------------------------------------------
+
+            using (Pen axisPen = new Pen(Color.LightGray, 1))
+            {
+                // X axis
+                if (minY <= 0 && maxY >= 0)
+                {
+                    PointF p1 = ToScreen(minX, 0);
+                    PointF p2 = ToScreen(maxX, 0);
+
+                    g.DrawLine(axisPen, p1, p2);
+                }
+
+                // Y axis
+                if (minX <= 0 && maxX >= 0)
+                {
+                    PointF p1 = ToScreen(0, minY);
+                    PointF p2 = ToScreen(0, maxY);
+
+                    g.DrawLine(axisPen, p1, p2);
+                }
+            }
+
+
+            // --------------------------------------------------------
+            // Draw connecting path
+            // --------------------------------------------------------
+
+            using (Pen pathPen = new Pen(Color.DodgerBlue, 1.5f))
+            {
+                for (int i = 1; i < previewPoints.Count; i++)
+                {
+                    var previous = previewPoints[i - 1];
+                    var current = previewPoints[i];
+
+                    PointF p1 = ToScreen(previous.X, previous.Y);
+                    PointF p2 = ToScreen(current.X, current.Y);
+
+                    g.DrawLine(pathPen, p1, p2);
+                }
+            }
+
+
+            // --------------------------------------------------------
+            // Draw points
+            // --------------------------------------------------------
+
+            const float pointSize = 6;
+
+            for (int i = 0; i < previewPoints.Count; i++)
+            {
+                var point = previewPoints[i];
+
+                PointF screenPoint = ToScreen(point.X, point.Y);
+
+                Brush brush;
+
+                if (point.EntityType == "Line")
+                {
+                    brush = Brushes.Red;
+                }
+                else
+                {
+                    brush = Brushes.Blue;
+                }
+
+                float x = screenPoint.X - pointSize / 2;
+                float y = screenPoint.Y - pointSize / 2;
+
+                g.FillEllipse(brush,x,y,pointSize,pointSize);
+            }
+
+
+            // --------------------------------------------------------
+            // Highlight first point
+            // --------------------------------------------------------
+
+            PointF firstPoint =ToScreen(previewPoints.First().X,previewPoints.First().Y);
+
+            using (Pen firstPen = new Pen(Color.Green, 2))
+            {
+                g.DrawEllipse(firstPen,firstPoint.X - 5,firstPoint.Y - 5,10,10);
+            }
+
+
+            // --------------------------------------------------------
+            // Highlight last point
+            // --------------------------------------------------------
+
+            PointF lastPoint = ToScreen(previewPoints.Last().X,previewPoints.Last().Y);
+
+            using (Pen lastPen = new Pen(Color.Black, 2))
+            {
+                g.DrawEllipse(lastPen,lastPoint.X - 5,lastPoint.Y - 5,10,10);
+            }
+
+
+            // --------------------------------------------------------
+            // Draw point count
+            // --------------------------------------------------------
+
+            using (Font font = new Font("Segoe UI", 8))
+            using (Brush brush = new SolidBrush(Color.DimGray))
+            {
+                string text =
+                    $"Points: {previewPoints.Count}";
+
+                g.DrawString(text,font,brush,5,5);
+            }
         }
     }
 }

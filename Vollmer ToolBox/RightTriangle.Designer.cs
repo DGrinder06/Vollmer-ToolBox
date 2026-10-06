@@ -48,7 +48,7 @@ namespace Vollmer_ToolBox
             // 
             pictureBox1.BackColor = System.Drawing.SystemColors.Window;
             pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new System.Drawing.Point(13, 73);
+            pictureBox1.Location = new System.Drawing.Point(170, 69);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new System.Drawing.Size(621, 364);
             pictureBox1.TabIndex = 2;
@@ -56,7 +56,7 @@ namespace Vollmer_ToolBox
             // 
             // textBox1
             // 
-            textBox1.Location = new System.Drawing.Point(416, 375);
+            textBox1.Location = new System.Drawing.Point(573, 371);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
             textBox1.Size = new System.Drawing.Size(75, 23);
@@ -65,7 +65,7 @@ namespace Vollmer_ToolBox
             // 
             // textBox2
             // 
-            textBox2.Location = new System.Drawing.Point(199, 382);
+            textBox2.Location = new System.Drawing.Point(356, 378);
             textBox2.Name = "textBox2";
             textBox2.ReadOnly = true;
             textBox2.Size = new System.Drawing.Size(112, 23);
@@ -77,7 +77,7 @@ namespace Vollmer_ToolBox
             label2.AutoSize = true;
             label2.BackColor = System.Drawing.SystemColors.Window;
             label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            label2.Location = new System.Drawing.Point(246, 358);
+            label2.Location = new System.Drawing.Point(403, 354);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(21, 21);
             label2.TabIndex = 10;
@@ -85,7 +85,7 @@ namespace Vollmer_ToolBox
             // 
             // textBox3
             // 
-            textBox3.Location = new System.Drawing.Point(26, 266);
+            textBox3.Location = new System.Drawing.Point(183, 262);
             textBox3.Name = "textBox3";
             textBox3.ReadOnly = true;
             textBox3.Size = new System.Drawing.Size(89, 23);
@@ -97,7 +97,7 @@ namespace Vollmer_ToolBox
             label3.AutoSize = true;
             label3.BackColor = System.Drawing.SystemColors.Window;
             label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            label3.Location = new System.Drawing.Point(75, 242);
+            label3.Location = new System.Drawing.Point(232, 238);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(20, 21);
             label3.TabIndex = 12;
@@ -105,7 +105,7 @@ namespace Vollmer_ToolBox
             // 
             // textBox4
             // 
-            textBox4.Location = new System.Drawing.Point(269, 242);
+            textBox4.Location = new System.Drawing.Point(426, 238);
             textBox4.Name = "textBox4";
             textBox4.ReadOnly = true;
             textBox4.Size = new System.Drawing.Size(112, 23);
@@ -117,7 +117,7 @@ namespace Vollmer_ToolBox
             label4.AutoSize = true;
             label4.BackColor = System.Drawing.SystemColors.Window;
             label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            label4.Location = new System.Drawing.Point(319, 218);
+            label4.Location = new System.Drawing.Point(476, 214);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(20, 21);
             label4.TabIndex = 14;
@@ -129,7 +129,7 @@ namespace Vollmer_ToolBox
             label1.AutoSize = true;
             label1.BackColor = System.Drawing.SystemColors.Window;
             label1.Font = new System.Drawing.Font("Segoe UI", 16F);
-            label1.Location = new System.Drawing.Point(497, 375);
+            label1.Location = new System.Drawing.Point(654, 371);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(21, 30);
             label1.TabIndex = 8;
@@ -138,7 +138,7 @@ namespace Vollmer_ToolBox
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(253, 443);
+            button1.Location = new System.Drawing.Point(410, 439);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(128, 32);
             button1.TabIndex = 15;
@@ -148,7 +148,7 @@ namespace Vollmer_ToolBox
             // 
             // button2
             // 
-            button2.Location = new System.Drawing.Point(447, 443);
+            button2.Location = new System.Drawing.Point(604, 439);
             button2.Name = "button2";
             button2.Size = new System.Drawing.Size(134, 32);
             button2.TabIndex = 16;
@@ -173,7 +173,7 @@ namespace Vollmer_ToolBox
             Controls.Add(pictureBox1);
             Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             Name = "RightTriangle";
-            Size = new System.Drawing.Size(652, 494);
+            Size = new System.Drawing.Size(946, 765);
             Load += RightTriangle_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

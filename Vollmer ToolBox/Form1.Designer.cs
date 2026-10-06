@@ -62,7 +62,7 @@ namespace Vollmer_ToolBox
             panel1.Dock = System.Windows.Forms.DockStyle.Left;
             panel1.Location = new System.Drawing.Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(261, 671);
+            panel1.Size = new System.Drawing.Size(261, 797);
             panel1.TabIndex = 1;
             panel1.Paint += panel1_Paint;
             // 
@@ -130,7 +130,7 @@ namespace Vollmer_ToolBox
             panel2.Dock = System.Windows.Forms.DockStyle.Top;
             panel2.Location = new System.Drawing.Point(261, 0);
             panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(782, 36);
+            panel2.Size = new System.Drawing.Size(946, 36);
             panel2.TabIndex = 2;
             panel2.Paint += panel2_Paint;
             panel2.MouseDown += panel2_MouseDown;
@@ -140,7 +140,7 @@ namespace Vollmer_ToolBox
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.icons8_minimize_window_24;
-            pictureBox2.Location = new System.Drawing.Point(719, 6);
+            pictureBox2.Location = new System.Drawing.Point(892, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new System.Drawing.Size(23, 24);
             pictureBox2.TabIndex = 2;
@@ -150,7 +150,7 @@ namespace Vollmer_ToolBox
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.icons8_close_window_24;
-            pictureBox3.Location = new System.Drawing.Point(748, 6);
+            pictureBox3.Location = new System.Drawing.Point(921, 3);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new System.Drawing.Size(22, 23);
             pictureBox3.TabIndex = 1;
@@ -163,26 +163,26 @@ namespace Vollmer_ToolBox
             panel3.Controls.Add(RightTrianglePanel);
             panel3.Controls.Add(dressingSpeedsCalculator1);
             panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            panel3.Location = new System.Drawing.Point(261, 63);
+            panel3.Location = new System.Drawing.Point(261, 32);
             panel3.Name = "panel3";
-            panel3.Size = new System.Drawing.Size(782, 608);
+            panel3.Size = new System.Drawing.Size(946, 765);
             panel3.TabIndex = 3;
             // 
             // CSV
             // 
-            CSV.Location = new System.Drawing.Point(0, -28);
+            CSV.Location = new System.Drawing.Point(0, -2);
             CSV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             CSV.Name = "CSV";
-            CSV.Size = new System.Drawing.Size(782, 636);
+            CSV.Size = new System.Drawing.Size(946, 765);
             CSV.TabIndex = 6;
             CSV.Load += CSV_Load;
             // 
             // RightTrianglePanel
             // 
-            RightTrianglePanel.Location = new System.Drawing.Point(0, -28);
+            RightTrianglePanel.Location = new System.Drawing.Point(-3, -2);
             RightTrianglePanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             RightTrianglePanel.Name = "RightTrianglePanel";
-            RightTrianglePanel.Size = new System.Drawing.Size(782, 636);
+            RightTrianglePanel.Size = new System.Drawing.Size(946, 765);
             RightTrianglePanel.TabIndex = 2;
             RightTrianglePanel.Load += rightTriangle1_Load;
             // 
@@ -191,7 +191,7 @@ namespace Vollmer_ToolBox
             dressingSpeedsCalculator1.Location = new System.Drawing.Point(0, -28);
             dressingSpeedsCalculator1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             dressingSpeedsCalculator1.Name = "dressingSpeedsCalculator1";
-            dressingSpeedsCalculator1.Size = new System.Drawing.Size(782, 636);
+            dressingSpeedsCalculator1.Size = new System.Drawing.Size(946, 765);
             dressingSpeedsCalculator1.TabIndex = 0;
             dressingSpeedsCalculator1.Load += dressingSpeedsCalculator1_Load_1;
             // 
@@ -200,7 +200,7 @@ namespace Vollmer_ToolBox
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.White;
-            ClientSize = new System.Drawing.Size(1043, 671);
+            ClientSize = new System.Drawing.Size(1207, 797);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
