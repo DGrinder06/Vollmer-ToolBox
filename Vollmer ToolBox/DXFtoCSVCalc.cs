@@ -49,12 +49,6 @@ namespace Vollmer_ToolBox
         }
 
         // ============================================================
-        // INCREMENTS TEXTBOX
-        // ============================================================
-        private void IncrementsTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-        }
-        // ============================================================
         // BROWSE FOR DXF
         // ============================================================
 
@@ -317,22 +311,12 @@ namespace Vollmer_ToolBox
                 string incrementText = IncrementsTextBox.Text.Trim();
 
                 // Try German format first
-                if (!double.TryParse(
-                    incrementText,
-                    NumberStyles.Float,
-                    CultureInfo.GetCultureInfo("de-DE"),
-                    out maxPointDistance))
+                if (!double.TryParse(incrementText,NumberStyles.Float,CultureInfo.GetCultureInfo("de-DE"),out maxPointDistance))
                 {
                     // If that failed, try English format
-                    if (!double.TryParse(
-                        incrementText,
-                        NumberStyles.Float,
-                        CultureInfo.InvariantCulture,
-                        out maxPointDistance))
+                    if (!double.TryParse(incrementText,NumberStyles.Float,CultureInfo.InvariantCulture,out maxPointDistance))
                     {
-                        MessageBox.Show(
-                            "Please enter a valid Radius increment, such as 0.5.",
-                            "Invalid Distance",
+                        MessageBox.Show("Please enter a valid Radius increment, such as 0.5.","Invalid Distance",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
 
@@ -343,19 +327,7 @@ namespace Vollmer_ToolBox
 
                 if (maxPointDistance <= 0)
                 {
-                    MessageBox.Show(
-                        "Radius increments must be greater than zero.",
-                        "Invalid Distance",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
-                }
-                if (maxPointDistance >= 1.0)
-                {
-                    MessageBox.Show(
-                        "Radius increments must be less than 1.0.",
-                        "Invalid Distance",
+                    MessageBox.Show("Radius increments must be greater than zero.", "Invalid Distance",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
 
@@ -432,7 +404,17 @@ namespace Vollmer_ToolBox
                         arcAngle += 360.0;
                     }
 
+                    double arcLength = (Math.PI * radius * arcAngle) / 180.0;
 
+
+                    if (arcLength /2 <= maxPointDistance)
+                    {
+                        MessageBox.Show("Radius increments must be less than the radius circumference try a smaller radius increment", "Invalid Distance",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+
+                        return;
+                    }
 
                     double ratio = Math.Max(0.0, Math.Min(1.0, maxPointDistance / (2.0 * radius)));
                     double maxAngleRadians = 2.0 * Math.Asin(ratio);
