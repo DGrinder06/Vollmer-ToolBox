@@ -602,7 +602,7 @@ namespace Vollmer_ToolBox
 
 
                     string z = p.Y.ToString(format, culture);
-                    string y = calculatedY.ToString(format, culture);
+                    string y;
                     string r = p.Radius.ToString(format, culture);
                     string a = 0.00.ToString(format, culture);
                     string feed = assignedValue.ToString(format, culture);
@@ -613,8 +613,14 @@ namespace Vollmer_ToolBox
 
                         ShearAngleBox.Text = "0";
                     }
-
-
+                    if (!PocketingCheckBox.Checked)
+                    {
+                        y = "0";
+                    }
+                    else
+                    {
+                       y = calculatedY.ToString(format, culture);
+                    }
 
                     if (AlternateRadioButton.Checked)
                     {
@@ -857,6 +863,15 @@ namespace Vollmer_ToolBox
             if (PocketingCheckBox1)
             {
                 ThetaTextbox.Clear();
+                ShearAngleLabel.Visible = true;
+                CAxisLabel.Visible = false;
+                ShearAngleBox.Clear();
+            }
+            else
+            {
+                CAxisLabel.Visible = true;
+                ShearAngleLabel.Visible = false;
+                ShearAngleBox.Clear();
             }
         }
         private void SetupDXFPreviewPanel()

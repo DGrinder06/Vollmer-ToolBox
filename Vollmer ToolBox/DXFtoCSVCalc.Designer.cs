@@ -36,7 +36,7 @@
             IncrementsTextBox = new System.Windows.Forms.TextBox();
             IncrementLabel = new System.Windows.Forms.Label();
             ShearAngleBox = new System.Windows.Forms.TextBox();
-            CAxisLabel = new System.Windows.Forms.Label();
+            ShearAngleLabel = new System.Windows.Forms.Label();
             SpeedComboBox = new System.Windows.Forms.ComboBox();
             SpeedLabel = new System.Windows.Forms.Label();
             CenterOffsetTextBox = new System.Windows.Forms.TextBox();
@@ -51,6 +51,7 @@
             PocketingCheckBox = new System.Windows.Forms.CheckBox();
             ThetaTextbox = new System.Windows.Forms.TextBox();
             ThetaLabel = new System.Windows.Forms.Label();
+            CAxisLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)CSVPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CSVdataGridView).BeginInit();
             SuspendLayout();
@@ -120,14 +121,14 @@
             ShearAngleBox.Enter += CAxisTextBox_Enter;
             ShearAngleBox.Leave += CAxisTextBox_Leave;
             // 
-            // CAxisLabel
+            // ShearAngleLabel
             // 
-            CAxisLabel.AutoSize = true;
-            CAxisLabel.Location = new System.Drawing.Point(249, 175);
-            CAxisLabel.Name = "CAxisLabel";
-            CAxisLabel.Size = new System.Drawing.Size(70, 15);
-            CAxisLabel.TabIndex = 9;
-            CAxisLabel.Text = "Shear Angle";
+            ShearAngleLabel.AutoSize = true;
+            ShearAngleLabel.Location = new System.Drawing.Point(249, 175);
+            ShearAngleLabel.Name = "ShearAngleLabel";
+            ShearAngleLabel.Size = new System.Drawing.Size(70, 15);
+            ShearAngleLabel.TabIndex = 9;
+            ShearAngleLabel.Text = "Shear Angle";
             // 
             // SpeedComboBox
             // 
@@ -275,10 +276,20 @@
             ThetaLabel.TabIndex = 24;
             ThetaLabel.Text = "Theta";
             // 
+            // CAxisLabel
+            // 
+            CAxisLabel.AutoSize = true;
+            CAxisLabel.Location = new System.Drawing.Point(244, 175);
+            CAxisLabel.Name = "CAxisLabel";
+            CAxisLabel.Size = new System.Drawing.Size(85, 15);
+            CAxisLabel.TabIndex = 25;
+            CAxisLabel.Text = "C Axis Position";
+            // 
             // DXFtoCSV
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(CAxisLabel);
             Controls.Add(ThetaLabel);
             Controls.Add(ThetaTextbox);
             Controls.Add(PocketingCheckBox);
@@ -293,7 +304,7 @@
             Controls.Add(CenterOffsetTextBox);
             Controls.Add(SpeedLabel);
             Controls.Add(SpeedComboBox);
-            Controls.Add(CAxisLabel);
+            Controls.Add(ShearAngleLabel);
             Controls.Add(ShearAngleBox);
             Controls.Add(IncrementLabel);
             Controls.Add(IncrementsTextBox);
@@ -318,7 +329,7 @@
         private System.Windows.Forms.TextBox IncrementsTextBox;
         private System.Windows.Forms.Label IncrementLabel;
         private System.Windows.Forms.TextBox ShearAngleBox;
-        private System.Windows.Forms.Label CAxisLabel;
+        private System.Windows.Forms.Label ShearAngleLabel;
         private System.Windows.Forms.ComboBox SpeedComboBox;
         private System.Windows.Forms.Label SpeedLabel;
         private System.Windows.Forms.TextBox CenterOffsetTextBox;
@@ -333,5 +344,6 @@
         private System.Windows.Forms.CheckBox PocketingCheckBox;
         private System.Windows.Forms.TextBox ThetaTextbox;
         private System.Windows.Forms.Label ThetaLabel;
+        private System.Windows.Forms.Label CAxisLabel;
     }
 }

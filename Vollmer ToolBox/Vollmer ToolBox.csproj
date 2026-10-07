@@ -6,7 +6,7 @@
     <RootNamespace>Vollmer_ToolBox</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
     <Version>$(VersionPrefix)</Version>
-    <FileVersion>1.0.0.2</FileVersion>
+    <FileVersion>1.0.0.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
