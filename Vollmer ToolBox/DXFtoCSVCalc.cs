@@ -45,8 +45,7 @@ namespace Vollmer_ToolBox
             NumericTextBoxHelper.Attach(CenterOffsetTextBox);
             NumericTextBoxHelper.Attach(WheelDiameterTextBox);
             NumericTextBoxHelper.Attach(ShearAngleBox);
-            NumericTextBoxHelper.Attach(ThetaTextbox);
-
+            
         }
 
         // ============================================================
@@ -602,7 +601,7 @@ namespace Vollmer_ToolBox
 
 
                     string z = p.Y.ToString(format, culture);
-                    string y;
+                    string y = calculatedY.ToString(format, culture);
                     string r = p.Radius.ToString(format, culture);
                     string a = 0.00.ToString(format, culture);
                     string feed = assignedValue.ToString(format, culture);
@@ -612,14 +611,6 @@ namespace Vollmer_ToolBox
                     {
 
                         ShearAngleBox.Text = "0";
-                    }
-                    if (!PocketingCheckBox.Checked)
-                    {
-                        y = "0";
-                    }
-                    else
-                    {
-                       y = calculatedY.ToString(format, culture);
                     }
 
                     if (AlternateRadioButton.Checked)
@@ -642,22 +633,7 @@ namespace Vollmer_ToolBox
                         }
                     }
 
-                    string t;
-
-
-                    if (!PocketingCheckBox.Checked)
-                    {
-                       
-                        if (string.IsNullOrWhiteSpace(ThetaTextbox.Text))
-                        {
-                            ThetaTextbox.Text = "0";
-                        }
-                        t = ThetaTextbox.Text;
-                    }
-                    else
-                    { 
-                    t = p.TangentAngle.ToString(format, culture);
-                    }
+                    string t = p.TangentAngle.ToString(format, culture);
 
 
                     sb.AppendLine($"{y}{sep}{z}{sep}{x}{sep}{a}{sep}{c}{sep}{feed}{sep}{t}{sep}{a}");
@@ -850,31 +826,7 @@ namespace Vollmer_ToolBox
             ReverseCheckBox.Checked = ReverseCheckBox1;
         }
 
-
-        private bool PocketingCheckBox1 = false;
-        private void PocketingCheckBox_Click(object sender, EventArgs e)
-        {
-            PocketingCheckBox1 = !PocketingCheckBox1;
-            PocketingCheckBox.Checked = PocketingCheckBox1;
-
-            ThetaTextbox.Visible = !PocketingCheckBox1;
-            ThetaLabel.Visible = !PocketingCheckBox1;
-
-            if (PocketingCheckBox1)
-            {
-                ThetaTextbox.Clear();
-                ShearAngleLabel.Visible = true;
-                CAxisLabel.Visible = false;
-                ShearAngleBox.Clear();
-            }
-            else
-            {
-                CAxisLabel.Visible = true;
-                ShearAngleLabel.Visible = false;
-                ShearAngleBox.Clear();
-            }
-        }
-        private void SetupDXFPreviewPanel()
+       private void SetupDXFPreviewPanel()
         {
             DXFViewerPanel.BackColor = Color.White;
             DXFViewerPanel.BorderStyle = BorderStyle.FixedSingle;
@@ -1119,7 +1071,6 @@ namespace Vollmer_ToolBox
                 g.DrawString(text, font, brush, 5, 5);
             }
         }
-
     }
 }
 

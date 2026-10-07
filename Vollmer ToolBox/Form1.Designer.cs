@@ -118,7 +118,7 @@ namespace Vollmer_ToolBox
             DXFtoCSVButton.Name = "DXFtoCSVButton";
             DXFtoCSVButton.Size = new System.Drawing.Size(261, 44);
             DXFtoCSVButton.TabIndex = 5;
-            DXFtoCSVButton.Text = "CSV Calculator";
+            DXFtoCSVButton.Text = "Pocketing CSV Calculator";
             DXFtoCSVButton.UseVisualStyleBackColor = true;
             DXFtoCSVButton.Click += DXFtoCSV_Click;
             // 
