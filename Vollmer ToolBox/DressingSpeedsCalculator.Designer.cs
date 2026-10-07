@@ -56,7 +56,7 @@ namespace Vollmer_ToolBox
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
-            label1.Location = new System.Drawing.Point(468, 36);
+            label1.Location = new System.Drawing.Point(433, 145);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(61, 17);
             label1.TabIndex = 0;
@@ -67,7 +67,7 @@ namespace Vollmer_ToolBox
             // 
             checkBox1.AutoSize = true;
             checkBox1.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
-            checkBox1.Location = new System.Drawing.Point(250, 338);
+            checkBox1.Location = new System.Drawing.Point(215, 447);
             checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new System.Drawing.Size(132, 21);
@@ -80,7 +80,7 @@ namespace Vollmer_ToolBox
             // 
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
-            label2.Location = new System.Drawing.Point(198, 109);
+            label2.Location = new System.Drawing.Point(163, 218);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(170, 17);
             label2.TabIndex = 4;
@@ -90,7 +90,7 @@ namespace Vollmer_ToolBox
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
-            label3.Location = new System.Drawing.Point(612, 109);
+            label3.Location = new System.Drawing.Point(577, 218);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(172, 17);
             label3.TabIndex = 5;
@@ -98,7 +98,7 @@ namespace Vollmer_ToolBox
             // 
             // textBox1
             // 
-            textBox1.Location = new System.Drawing.Point(223, 132);
+            textBox1.Location = new System.Drawing.Point(188, 241);
             textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.Size = new System.Drawing.Size(110, 23);
@@ -108,7 +108,7 @@ namespace Vollmer_ToolBox
             // 
             // textBox2
             // 
-            textBox2.Location = new System.Drawing.Point(638, 128);
+            textBox2.Location = new System.Drawing.Point(603, 237);
             textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             textBox2.Name = "textBox2";
             textBox2.Size = new System.Drawing.Size(110, 23);
@@ -119,7 +119,7 @@ namespace Vollmer_ToolBox
             // pictureBox1
             // 
             pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new System.Drawing.Point(180, 163);
+            pictureBox1.Location = new System.Drawing.Point(145, 272);
             pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new System.Drawing.Size(231, 161);
@@ -130,7 +130,7 @@ namespace Vollmer_ToolBox
             // pictureBox2
             // 
             pictureBox2.Image = (System.Drawing.Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new System.Drawing.Point(590, 163);
+            pictureBox2.Location = new System.Drawing.Point(555, 272);
             pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new System.Drawing.Size(231, 161);
@@ -141,7 +141,7 @@ namespace Vollmer_ToolBox
             // 
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
-            label4.Location = new System.Drawing.Point(338, 134);
+            label4.Location = new System.Drawing.Point(303, 243);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(30, 17);
             label4.TabIndex = 10;
@@ -151,7 +151,7 @@ namespace Vollmer_ToolBox
             // 
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
-            label5.Location = new System.Drawing.Point(754, 134);
+            label5.Location = new System.Drawing.Point(719, 243);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(30, 17);
             label5.TabIndex = 11;
@@ -159,7 +159,7 @@ namespace Vollmer_ToolBox
             // 
             // textBox3
             // 
-            textBox3.Location = new System.Drawing.Point(223, 388);
+            textBox3.Location = new System.Drawing.Point(188, 497);
             textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             textBox3.Name = "textBox3";
             textBox3.Size = new System.Drawing.Size(110, 23);
@@ -169,7 +169,7 @@ namespace Vollmer_ToolBox
             // 
             // textBox4
             // 
-            textBox4.Location = new System.Drawing.Point(631, 390);
+            textBox4.Location = new System.Drawing.Point(596, 499);
             textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             textBox4.Name = "textBox4";
             textBox4.ReadOnly = true;
@@ -182,7 +182,7 @@ namespace Vollmer_ToolBox
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
-            label6.Location = new System.Drawing.Point(186, 361);
+            label6.Location = new System.Drawing.Point(151, 470);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(206, 17);
             label6.TabIndex = 14;
@@ -192,7 +192,7 @@ namespace Vollmer_ToolBox
             // 
             label7.AutoSize = true;
             label7.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
-            label7.Location = new System.Drawing.Point(590, 361);
+            label7.Location = new System.Drawing.Point(555, 470);
             label7.Name = "label7";
             label7.Size = new System.Drawing.Size(208, 17);
             label7.TabIndex = 15;
@@ -201,7 +201,7 @@ namespace Vollmer_ToolBox
             // button1
             // 
             button1.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
-            button1.Location = new System.Drawing.Point(441, 424);
+            button1.Location = new System.Drawing.Point(406, 533);
             button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(88, 34);
@@ -214,7 +214,7 @@ namespace Vollmer_ToolBox
             // 
             label8.AutoSize = true;
             label8.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
-            label8.Location = new System.Drawing.Point(338, 390);
+            label8.Location = new System.Drawing.Point(303, 499);
             label8.Name = "label8";
             label8.Size = new System.Drawing.Size(44, 17);
             label8.TabIndex = 17;
@@ -224,7 +224,7 @@ namespace Vollmer_ToolBox
             // 
             label9.AutoSize = true;
             label9.Font = new System.Drawing.Font("Bahnschrift Light", 10F);
-            label9.Location = new System.Drawing.Point(747, 394);
+            label9.Location = new System.Drawing.Point(712, 503);
             label9.Name = "label9";
             label9.Size = new System.Drawing.Size(44, 17);
             label9.TabIndex = 18;
@@ -234,7 +234,7 @@ namespace Vollmer_ToolBox
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "VGrind340S", "Rush Wheel Dresser" });
-            comboBox1.Location = new System.Drawing.Point(407, 56);
+            comboBox1.Location = new System.Drawing.Point(372, 165);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new System.Drawing.Size(183, 23);
             comboBox1.TabIndex = 19;
@@ -262,7 +262,6 @@ namespace Vollmer_ToolBox
             Controls.Add(label2);
             Controls.Add(checkBox1);
             Controls.Add(label1);
-            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             Name = "DressingSpeedsCalculator";
             Size = new System.Drawing.Size(946, 765);
             Load += DressingSpeedsCalculator_Load;

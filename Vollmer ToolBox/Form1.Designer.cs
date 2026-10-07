@@ -179,7 +179,7 @@ namespace Vollmer_ToolBox
             // 
             // RightTrianglePanel
             // 
-            RightTrianglePanel.Location = new System.Drawing.Point(-3, -2);
+            RightTrianglePanel.Location = new System.Drawing.Point(0, -2);
             RightTrianglePanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             RightTrianglePanel.Name = "RightTrianglePanel";
             RightTrianglePanel.Size = new System.Drawing.Size(946, 765);
@@ -188,7 +188,7 @@ namespace Vollmer_ToolBox
             // 
             // dressingSpeedsCalculator1
             // 
-            dressingSpeedsCalculator1.Location = new System.Drawing.Point(0, -28);
+            dressingSpeedsCalculator1.Location = new System.Drawing.Point(0, -2);
             dressingSpeedsCalculator1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             dressingSpeedsCalculator1.Name = "dressingSpeedsCalculator1";
             dressingSpeedsCalculator1.Size = new System.Drawing.Size(946, 765);

@@ -187,7 +187,7 @@
             CSVdataGridView.ReadOnly = true;
             CSVdataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             CSVdataGridView.ShowEditingIcon = false;
-            CSVdataGridView.Size = new System.Drawing.Size(949, 293);
+            CSVdataGridView.Size = new System.Drawing.Size(946, 295);
             CSVdataGridView.TabIndex = 15;
             CSVdataGridView.RowPostPaint += CSVdataGridView_RowPostPaint;
             // 
@@ -241,7 +241,7 @@
             DXFViewerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             DXFViewerPanel.Location = new System.Drawing.Point(0, 587);
             DXFViewerPanel.Name = "DXFViewerPanel";
-            DXFViewerPanel.Size = new System.Drawing.Size(946, 175);
+            DXFViewerPanel.Size = new System.Drawing.Size(946, 178);
             DXFViewerPanel.TabIndex = 21;
             // 
             // DXFtoCSV
