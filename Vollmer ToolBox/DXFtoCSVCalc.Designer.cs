@@ -48,6 +48,9 @@
             WheelDiameterLabel = new System.Windows.Forms.Label();
             ReverseCheckBox = new System.Windows.Forms.CheckBox();
             DXFViewerPanel = new System.Windows.Forms.Panel();
+            PocketingCheckBox = new System.Windows.Forms.CheckBox();
+            ThetaTextbox = new System.Windows.Forms.TextBox();
+            ThetaLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)CSVPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CSVdataGridView).BeginInit();
             SuspendLayout();
@@ -72,7 +75,7 @@
             // 
             // CalculateButton
             // 
-            CalculateButton.Location = new System.Drawing.Point(438, 252);
+            CalculateButton.Location = new System.Drawing.Point(380, 252);
             CalculateButton.Name = "CalculateButton";
             CalculateButton.Size = new System.Drawing.Size(92, 37);
             CalculateButton.TabIndex = 3;
@@ -91,7 +94,7 @@
             // 
             // IncrementsTextBox
             // 
-            IncrementsTextBox.Location = new System.Drawing.Point(207, 194);
+            IncrementsTextBox.Location = new System.Drawing.Point(118, 193);
             IncrementsTextBox.Name = "IncrementsTextBox";
             IncrementsTextBox.Size = new System.Drawing.Size(100, 23);
             IncrementsTextBox.TabIndex = 6;
@@ -101,7 +104,7 @@
             // IncrementLabel
             // 
             IncrementLabel.AutoSize = true;
-            IncrementLabel.Location = new System.Drawing.Point(207, 176);
+            IncrementLabel.Location = new System.Drawing.Point(118, 175);
             IncrementLabel.Name = "IncrementLabel";
             IncrementLabel.Size = new System.Drawing.Size(104, 15);
             IncrementLabel.TabIndex = 7;
@@ -109,7 +112,7 @@
             // 
             // ShearAngleBox
             // 
-            ShearAngleBox.Location = new System.Drawing.Point(326, 194);
+            ShearAngleBox.Location = new System.Drawing.Point(236, 193);
             ShearAngleBox.Name = "ShearAngleBox";
             ShearAngleBox.Size = new System.Drawing.Size(100, 23);
             ShearAngleBox.TabIndex = 8;
@@ -120,7 +123,7 @@
             // CAxisLabel
             // 
             CAxisLabel.AutoSize = true;
-            CAxisLabel.Location = new System.Drawing.Point(341, 176);
+            CAxisLabel.Location = new System.Drawing.Point(249, 175);
             CAxisLabel.Name = "CAxisLabel";
             CAxisLabel.Size = new System.Drawing.Size(70, 15);
             CAxisLabel.TabIndex = 9;
@@ -131,7 +134,7 @@
             SpeedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             SpeedComboBox.FormattingEnabled = true;
             SpeedComboBox.Items.AddRange(new object[] { "V1", "V2", "V3", "V4" });
-            SpeedComboBox.Location = new System.Drawing.Point(446, 194);
+            SpeedComboBox.Location = new System.Drawing.Point(360, 193);
             SpeedComboBox.Name = "SpeedComboBox";
             SpeedComboBox.Size = new System.Drawing.Size(84, 23);
             SpeedComboBox.TabIndex = 10;
@@ -140,7 +143,7 @@
             // SpeedLabel
             // 
             SpeedLabel.AutoSize = true;
-            SpeedLabel.Location = new System.Drawing.Point(446, 176);
+            SpeedLabel.Location = new System.Drawing.Point(360, 175);
             SpeedLabel.Name = "SpeedLabel";
             SpeedLabel.Size = new System.Drawing.Size(84, 15);
             SpeedLabel.TabIndex = 11;
@@ -148,7 +151,7 @@
             // 
             // CenterOffsetTextBox
             // 
-            CenterOffsetTextBox.Location = new System.Drawing.Point(553, 194);
+            CenterOffsetTextBox.Location = new System.Drawing.Point(464, 193);
             CenterOffsetTextBox.Name = "CenterOffsetTextBox";
             CenterOffsetTextBox.Size = new System.Drawing.Size(100, 23);
             CenterOffsetTextBox.TabIndex = 12;
@@ -159,7 +162,7 @@
             // CenterOffset
             // 
             CenterOffset.AutoSize = true;
-            CenterOffset.Location = new System.Drawing.Point(565, 176);
+            CenterOffset.Location = new System.Drawing.Point(476, 175);
             CenterOffset.Name = "CenterOffset";
             CenterOffset.Size = new System.Drawing.Size(77, 15);
             CenterOffset.TabIndex = 13;
@@ -194,7 +197,7 @@
             // AlternateRadioButton
             // 
             AlternateRadioButton.AutoSize = true;
-            AlternateRadioButton.Location = new System.Drawing.Point(243, 261);
+            AlternateRadioButton.Location = new System.Drawing.Point(161, 261);
             AlternateRadioButton.Name = "AlternateRadioButton";
             AlternateRadioButton.Size = new System.Drawing.Size(168, 19);
             AlternateRadioButton.TabIndex = 16;
@@ -207,7 +210,7 @@
             // 
             // WheelDiameterTextBox
             // 
-            WheelDiameterTextBox.Location = new System.Drawing.Point(673, 194);
+            WheelDiameterTextBox.Location = new System.Drawing.Point(588, 193);
             WheelDiameterTextBox.Name = "WheelDiameterTextBox";
             WheelDiameterTextBox.Size = new System.Drawing.Size(100, 23);
             WheelDiameterTextBox.TabIndex = 17;
@@ -218,7 +221,7 @@
             // WheelDiameterLabel
             // 
             WheelDiameterLabel.AutoSize = true;
-            WheelDiameterLabel.Location = new System.Drawing.Point(673, 176);
+            WheelDiameterLabel.Location = new System.Drawing.Point(588, 175);
             WheelDiameterLabel.Name = "WheelDiameterLabel";
             WheelDiameterLabel.Size = new System.Drawing.Size(91, 15);
             WheelDiameterLabel.TabIndex = 18;
@@ -227,7 +230,7 @@
             // ReverseCheckBox
             // 
             ReverseCheckBox.AutoSize = true;
-            ReverseCheckBox.Location = new System.Drawing.Point(565, 262);
+            ReverseCheckBox.Location = new System.Drawing.Point(539, 261);
             ReverseCheckBox.Name = "ReverseCheckBox";
             ReverseCheckBox.Size = new System.Drawing.Size(126, 19);
             ReverseCheckBox.TabIndex = 20;
@@ -244,10 +247,41 @@
             DXFViewerPanel.Size = new System.Drawing.Size(946, 175);
             DXFViewerPanel.TabIndex = 21;
             // 
+            // PocketingCheckBox
+            // 
+            PocketingCheckBox.AutoSize = true;
+            PocketingCheckBox.Location = new System.Drawing.Point(717, 261);
+            PocketingCheckBox.Name = "PocketingCheckBox";
+            PocketingCheckBox.Size = new System.Drawing.Size(79, 19);
+            PocketingCheckBox.TabIndex = 22;
+            PocketingCheckBox.Text = "Pocketing";
+            PocketingCheckBox.UseVisualStyleBackColor = true;
+            PocketingCheckBox.Click += PocketingCheckBox_Click;
+            // 
+            // ThetaTextbox
+            // 
+            ThetaTextbox.Location = new System.Drawing.Point(711, 193);
+            ThetaTextbox.Name = "ThetaTextbox";
+            ThetaTextbox.Size = new System.Drawing.Size(100, 23);
+            ThetaTextbox.TabIndex = 23;
+            ThetaTextbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // ThetaLabel
+            // 
+            ThetaLabel.AutoSize = true;
+            ThetaLabel.Location = new System.Drawing.Point(736, 175);
+            ThetaLabel.Name = "ThetaLabel";
+            ThetaLabel.Size = new System.Drawing.Size(37, 15);
+            ThetaLabel.TabIndex = 24;
+            ThetaLabel.Text = "Theta";
+            // 
             // DXFtoCSV
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(ThetaLabel);
+            Controls.Add(ThetaTextbox);
+            Controls.Add(PocketingCheckBox);
             Controls.Add(DXFViewerPanel);
             Controls.Add(ReverseCheckBox);
             Controls.Add(WheelDiameterLabel);
@@ -296,5 +330,8 @@
         private System.Windows.Forms.Label WheelDiameterLabel;
         private System.Windows.Forms.CheckBox ReverseCheckBox;
         private System.Windows.Forms.Panel DXFViewerPanel;
+        private System.Windows.Forms.CheckBox PocketingCheckBox;
+        private System.Windows.Forms.TextBox ThetaTextbox;
+        private System.Windows.Forms.Label ThetaLabel;
     }
 }

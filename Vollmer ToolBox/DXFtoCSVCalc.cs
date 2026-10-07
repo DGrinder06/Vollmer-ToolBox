@@ -9,6 +9,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,6 +45,7 @@ namespace Vollmer_ToolBox
             NumericTextBoxHelper.Attach(CenterOffsetTextBox);
             NumericTextBoxHelper.Attach(WheelDiameterTextBox);
             NumericTextBoxHelper.Attach(ShearAngleBox);
+            NumericTextBoxHelper.Attach(ThetaTextbox);
 
         }
 
@@ -161,7 +163,7 @@ namespace Vollmer_ToolBox
                     CenterOffsetTextBox.Text = "0";
                 }
 
-                
+
 
                 // 3. Define the destination CSV file path (saves it in the same folder)
                 var points = new List<(string EntityType, double X, double Y, double Z, double Radius, double TangentAngle)>();
@@ -214,19 +216,19 @@ namespace Vollmer_ToolBox
                         else if (dx < 0 && dy > 0)
                         {
                             lineAngleRadians = Math.Atan2(dx, dy);
-                            lineAngle = (lineAngleRadians * 180 / Math.PI) -90;
+                            lineAngle = (lineAngleRadians * 180 / Math.PI) - 90;
 
                         }
 
                         else
                         {
                             lineAngleRadians = Math.Atan2(dy, dx);
-                            lineAngle = (lineAngleRadians * 180 / Math.PI );
+                            lineAngle = (lineAngleRadians * 180 / Math.PI);
                             lineAngle = -lineAngle;
                         }
 
 
-                        
+
 
 
                         if (Math.Abs(dy) < tolerance)
@@ -274,7 +276,7 @@ namespace Vollmer_ToolBox
                             lineAngle = (lineAngleRadians * 180 / Math.PI) - 180;
 
                         }
-                    
+
                     }
                     if (Math.Abs(dy) < tolerance)
                     {
@@ -293,7 +295,7 @@ namespace Vollmer_ToolBox
 
 
                     tanAngle = Math.Round(lineAngle, 3);
-                    
+
 
                     if (uniquePoints.Add((endX, endY, endZ)))
                     {
@@ -514,9 +516,9 @@ namespace Vollmer_ToolBox
                                 tangentAngle = Math.Round(tangentAngle, 3);
                             }
 
-                            else 
+                            else
                             {
-                                startTangentAngle = startAngle  ;
+                                startTangentAngle = startAngle;
                                 tangentAngle = -startTangentAngle - (i * angleIncrement);
                                 tangentAngle = Math.Round(tangentAngle, 3);
                             }
@@ -560,7 +562,7 @@ namespace Vollmer_ToolBox
 
                 File.WriteAllText(csvPath, sb.ToString());
 
-                MessageBox.Show($"File saved successfully:\n\n{csvPath}","File Saved",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show($"File saved successfully:\n\n{csvPath}", "File Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 foreach (var p in sorted)
                 {
@@ -634,8 +636,22 @@ namespace Vollmer_ToolBox
                         }
                     }
 
-                    string t = p.TangentAngle.ToString(format, culture);
+                    string t;
 
+
+                    if (!PocketingCheckBox.Checked)
+                    {
+                       
+                        if (string.IsNullOrWhiteSpace(ThetaTextbox.Text))
+                        {
+                            ThetaTextbox.Text = "0";
+                        }
+                        t = ThetaTextbox.Text;
+                    }
+                    else
+                    { 
+                    t = p.TangentAngle.ToString(format, culture);
+                    }
 
 
                     sb.AppendLine($"{y}{sep}{z}{sep}{x}{sep}{a}{sep}{c}{sep}{feed}{sep}{t}{sep}{a}");
@@ -712,19 +728,13 @@ namespace Vollmer_ToolBox
 
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred during conversion: {ex.Message} Make sure the dxf file is 2007", "Error",  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred during conversion: {ex.Message} Make sure the dxf file is 2007", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
 
 
-
-
-        private void CAxisTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-          
-        }
 
         private void SpeedComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -834,6 +844,21 @@ namespace Vollmer_ToolBox
             ReverseCheckBox.Checked = ReverseCheckBox1;
         }
 
+
+        private bool PocketingCheckBox1 = false;
+        private void PocketingCheckBox_Click(object sender, EventArgs e)
+        {
+            PocketingCheckBox1 = !PocketingCheckBox1;
+            PocketingCheckBox.Checked = PocketingCheckBox1;
+
+            ThetaTextbox.Visible = !PocketingCheckBox1;
+            ThetaLabel.Visible = !PocketingCheckBox1;
+
+            if (PocketingCheckBox1)
+            {
+                ThetaTextbox.Clear();
+            }
+        }
         private void SetupDXFPreviewPanel()
         {
             DXFViewerPanel.BackColor = Color.White;
@@ -851,7 +876,7 @@ namespace Vollmer_ToolBox
         }
         private void DXFViewerPanel_Resize(object sender, EventArgs e)
         {
-            DXFViewerPanel.Invalidate();    
+            DXFViewerPanel.Invalidate();
         }
         // ============================================================
         // DRAW PREVIEW
@@ -1038,7 +1063,7 @@ namespace Vollmer_ToolBox
                 float x = screenPoint.X - pointSize / 2;
                 float y = screenPoint.Y - pointSize / 2;
 
-                g.FillEllipse(brush,x,y,pointSize,pointSize);
+                g.FillEllipse(brush, x, y, pointSize, pointSize);
             }
 
 
@@ -1046,11 +1071,11 @@ namespace Vollmer_ToolBox
             // Highlight first point
             // --------------------------------------------------------
 
-            PointF firstPoint =ToScreen(previewPoints.First().X,previewPoints.First().Y);
+            PointF firstPoint = ToScreen(previewPoints.First().X, previewPoints.First().Y);
 
             using (Pen firstPen = new Pen(Color.Green, 2))
             {
-                g.DrawEllipse(firstPen,firstPoint.X - 5,firstPoint.Y - 5,10,10);
+                g.DrawEllipse(firstPen, firstPoint.X - 5, firstPoint.Y - 5, 10, 10);
             }
 
 
@@ -1058,11 +1083,11 @@ namespace Vollmer_ToolBox
             // Highlight last point
             // --------------------------------------------------------
 
-            PointF lastPoint = ToScreen(previewPoints.Last().X,previewPoints.Last().Y);
+            PointF lastPoint = ToScreen(previewPoints.Last().X, previewPoints.Last().Y);
 
             using (Pen lastPen = new Pen(Color.Black, 2))
             {
-                g.DrawEllipse(lastPen,lastPoint.X - 5,lastPoint.Y - 5,10,10);
+                g.DrawEllipse(lastPen, lastPoint.X - 5, lastPoint.Y - 5, 10, 10);
             }
 
 
@@ -1076,9 +1101,10 @@ namespace Vollmer_ToolBox
                 string text =
                     $"Points: {previewPoints.Count}";
 
-                g.DrawString(text,font,brush,5,5);
+                g.DrawString(text, font, brush, 5, 5);
             }
         }
+
     }
 }
 
