@@ -142,7 +142,7 @@ namespace Vollmer_ToolBox
             // FullScreenButton
             // 
             FullScreenButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            FullScreenButton.BackColor = System.Drawing.Color.Transparent;
+            FullScreenButton.BackColor = System.Drawing.Color.Orange;
             FullScreenButton.BackgroundImage = Properties.Resources.FullScreen1;
             FullScreenButton.Cursor = System.Windows.Forms.Cursors.Hand;
             FullScreenButton.FlatAppearance.BorderSize = 0;
