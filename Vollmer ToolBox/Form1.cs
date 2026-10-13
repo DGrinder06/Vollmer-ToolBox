@@ -13,6 +13,7 @@ using System.Windows.Forms;
 
 namespace Vollmer_ToolBox
 {
+    
 
 
     public partial class Form1 : Form
@@ -25,12 +26,20 @@ namespace Vollmer_ToolBox
         public Form1()
         {
             InitializeComponent();
+
             SidePanel.Height = button1.Height;
             SidePanel.Top = button1.Top;
+
             dressingSpeedsCalculator1.BringToFront();
 
+            panel2.Resize += (s, e) => PositionWindowButtons();
         }
 
+        private bool isFullScreen = false;
+
+        private Rectangle previousBounds;
+        private FormBorderStyle previousBorderStyle;
+        private FormWindowState previousWindowState;
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -111,16 +120,65 @@ namespace Vollmer_ToolBox
             SidePanel.Height = DXFtoCSVButton.Height;
             SidePanel.Top = DXFtoCSVButton.Top;
             CSV.BringToFront();
-        }   
+        }
 
         private void CSV_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void CSV_Paint(object sender, PaintEventArgs e)
+        private void FullScreenButton_Click(object sender, EventArgs e)
         {
+            if (!isFullScreen)
+            {
+                previousBounds = this.Bounds;
+                previousBorderStyle = this.FormBorderStyle;
+                previousWindowState = this.WindowState;
 
+                Screen screen = Screen.FromControl(this);
+
+                this.WindowState = FormWindowState.Normal;
+                this.FormBorderStyle = FormBorderStyle.None;
+                this.Bounds = screen.Bounds;
+
+                isFullScreen = true;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.FormBorderStyle = previousBorderStyle;
+                this.Bounds = previousBounds;
+                this.WindowState = previousWindowState;
+
+                isFullScreen = false;
+            }
+
+            this.PerformLayout();
+            PositionWindowButtons();
+        }
+        private void PositionWindowButtons()
+        {
+            int padding = 8;
+            int spacing = 4;
+
+
+            pictureBox3.Location = new Point(
+                panel2.ClientSize.Width - pictureBox3.Width - padding,
+                (panel2.ClientSize.Height - pictureBox3.Height) / 2);
+
+            FullScreenButton.Location = new Point(
+                pictureBox3.Left - FullScreenButton.Width - spacing,
+                (panel2.ClientSize.Height - FullScreenButton.Height) / 2);
+
+            pictureBox2.Location = new Point(
+                FullScreenButton.Left - pictureBox2.Width - spacing,
+                (panel2.ClientSize.Height - pictureBox2.Height) / 2);
+
+
+            // Ensure the buttons are visible above other controls
+            pictureBox2.BringToFront();
+            FullScreenButton.BringToFront();
+            pictureBox3.BringToFront();
         }
     }
 }

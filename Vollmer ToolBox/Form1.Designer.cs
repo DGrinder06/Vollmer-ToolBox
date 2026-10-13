@@ -37,6 +37,7 @@ namespace Vollmer_ToolBox
             pictureBox1 = new System.Windows.Forms.PictureBox();
             DXFtoCSVButton = new System.Windows.Forms.Button();
             panel2 = new System.Windows.Forms.Panel();
+            FullScreenButton = new System.Windows.Forms.Button();
             pictureBox2 = new System.Windows.Forms.PictureBox();
             pictureBox3 = new System.Windows.Forms.PictureBox();
             panel3 = new System.Windows.Forms.Panel();
@@ -125,6 +126,7 @@ namespace Vollmer_ToolBox
             // panel2
             // 
             panel2.BackColor = System.Drawing.Color.FromArgb(237, 108, 5);
+            panel2.Controls.Add(FullScreenButton);
             panel2.Controls.Add(pictureBox2);
             panel2.Controls.Add(pictureBox3);
             panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -137,10 +139,26 @@ namespace Vollmer_ToolBox
             panel2.MouseMove += panel2_MouseMove;
             panel2.MouseUp += panel2_MouseUp;
             // 
+            // FullScreenButton
+            // 
+            FullScreenButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            FullScreenButton.BackColor = System.Drawing.Color.Transparent;
+            FullScreenButton.BackgroundImage = Properties.Resources.FullScreen1;
+            FullScreenButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            FullScreenButton.FlatAppearance.BorderSize = 0;
+            FullScreenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            FullScreenButton.Location = new System.Drawing.Point(898, 5);
+            FullScreenButton.Name = "FullScreenButton";
+            FullScreenButton.Size = new System.Drawing.Size(20, 20);
+            FullScreenButton.TabIndex = 3;
+            FullScreenButton.TabStop = false;
+            FullScreenButton.UseVisualStyleBackColor = false;
+            FullScreenButton.Click += FullScreenButton_Click;
+            // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.icons8_minimize_window_24;
-            pictureBox2.Location = new System.Drawing.Point(892, 2);
+            pictureBox2.Location = new System.Drawing.Point(871, 3);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new System.Drawing.Size(23, 24);
             pictureBox2.TabIndex = 2;
@@ -159,10 +177,10 @@ namespace Vollmer_ToolBox
             // 
             // panel3
             // 
+            panel3.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             panel3.Controls.Add(CSV);
             panel3.Controls.Add(RightTrianglePanel);
             panel3.Controls.Add(dressingSpeedsCalculator1);
-            panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             panel3.Location = new System.Drawing.Point(261, 32);
             panel3.Name = "panel3";
             panel3.Size = new System.Drawing.Size(946, 765);
@@ -170,7 +188,8 @@ namespace Vollmer_ToolBox
             // 
             // CSV
             // 
-            CSV.Location = new System.Drawing.Point(0, -2);
+            CSV.Dock = System.Windows.Forms.DockStyle.Fill;
+            CSV.Location = new System.Drawing.Point(0, 0);
             CSV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             CSV.Name = "CSV";
             CSV.Size = new System.Drawing.Size(946, 765);
@@ -179,7 +198,8 @@ namespace Vollmer_ToolBox
             // 
             // RightTrianglePanel
             // 
-            RightTrianglePanel.Location = new System.Drawing.Point(0, -2);
+            RightTrianglePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            RightTrianglePanel.Location = new System.Drawing.Point(0, 0);
             RightTrianglePanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             RightTrianglePanel.Name = "RightTrianglePanel";
             RightTrianglePanel.Size = new System.Drawing.Size(946, 765);
@@ -188,7 +208,8 @@ namespace Vollmer_ToolBox
             // 
             // dressingSpeedsCalculator1
             // 
-            dressingSpeedsCalculator1.Location = new System.Drawing.Point(0, -2);
+            dressingSpeedsCalculator1.Dock = System.Windows.Forms.DockStyle.Fill;
+            dressingSpeedsCalculator1.Location = new System.Drawing.Point(0, 0);
             dressingSpeedsCalculator1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             dressingSpeedsCalculator1.Name = "dressingSpeedsCalculator1";
             dressingSpeedsCalculator1.Size = new System.Drawing.Size(946, 765);
@@ -236,6 +257,7 @@ namespace Vollmer_ToolBox
         private System.Windows.Forms.Button DXFtoCSVButton;
         private RightTriangle RightTrianglePanel;
         private DXFtoCSV CSV;
+        private System.Windows.Forms.Button FullScreenButton;
     }
 }
 

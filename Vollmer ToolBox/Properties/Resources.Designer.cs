@@ -73,6 +73,16 @@ namespace Vollmer_ToolBox.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FullScreen1 {
+            get {
+                object obj = ResourceManager.GetObject("FullScreen1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap grinding_wheel {
             get {
                 object obj = ResourceManager.GetObject("grinding wheel", resourceCulture);
