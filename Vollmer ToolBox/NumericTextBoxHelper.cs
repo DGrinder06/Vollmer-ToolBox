@@ -20,10 +20,26 @@ namespace Vollmer_ToolBox
 
             // Allow numbers
             if (char.IsDigit(e.KeyChar))
-                return;
+            {
+                int decimalIndex = textBox.Text.IndexOf('.');
 
-            // Allow one decimal point
-            if (e.KeyChar == '.' && !textBox.Text.Contains("."))
+                if (decimalIndex >= 0 &&
+                    textBox.SelectionStart > decimalIndex &&
+                    textBox.SelectionLength == 0)
+                {
+                    int decimalPlaces = textBox.Text.Length - decimalIndex - 1;
+
+                    if (decimalPlaces >= 3)
+                        e.Handled = true;
+                }
+
+                return;
+            }
+        
+            
+
+          // Allow one decimal point
+          if (e.KeyChar == '.' && !textBox.Text.Contains("."))
                 return;
 
             // Allow negative sign only at the beginning

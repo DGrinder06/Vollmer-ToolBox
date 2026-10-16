@@ -40,7 +40,7 @@
             SpeedComboBox = new System.Windows.Forms.ComboBox();
             SpeedLabel = new System.Windows.Forms.Label();
             CenterOffsetTextBox = new System.Windows.Forms.TextBox();
-            CenterOffset = new System.Windows.Forms.Label();
+            CenterOffsetLabel = new System.Windows.Forms.Label();
             CSVPictureBox = new System.Windows.Forms.PictureBox();
             CSVdataGridView = new System.Windows.Forms.DataGridView();
             AlternateRadioButton = new System.Windows.Forms.RadioButton();
@@ -48,6 +48,14 @@
             WheelDiameterLabel = new System.Windows.Forms.Label();
             ReverseCheckBox = new System.Windows.Forms.CheckBox();
             DXFViewerPanel = new System.Windows.Forms.Panel();
+            TypeComboBox = new System.Windows.Forms.ComboBox();
+            MachiningTypeLabel = new System.Windows.Forms.Label();
+            CAxisLabel = new System.Windows.Forms.Label();
+            ThetaLabel = new System.Windows.Forms.Label();
+            GrindingPositionComboBox = new System.Windows.Forms.ComboBox();
+            GrindingStyleLabel = new System.Windows.Forms.Label();
+            StyleComboBox = new System.Windows.Forms.ComboBox();
+            StyleLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)CSVPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CSVdataGridView).BeginInit();
             SuspendLayout();
@@ -109,7 +117,7 @@
             // 
             // ShearAngleBox
             // 
-            ShearAngleBox.Location = new System.Drawing.Point(295, 194);
+            ShearAngleBox.Location = new System.Drawing.Point(524, 194);
             ShearAngleBox.Name = "ShearAngleBox";
             ShearAngleBox.Size = new System.Drawing.Size(100, 23);
             ShearAngleBox.TabIndex = 8;
@@ -120,7 +128,7 @@
             // ShearAngleLabel
             // 
             ShearAngleLabel.AutoSize = true;
-            ShearAngleLabel.Location = new System.Drawing.Point(308, 176);
+            ShearAngleLabel.Location = new System.Drawing.Point(538, 176);
             ShearAngleLabel.Name = "ShearAngleLabel";
             ShearAngleLabel.Size = new System.Drawing.Size(70, 15);
             ShearAngleLabel.TabIndex = 9;
@@ -148,7 +156,7 @@
             // 
             // CenterOffsetTextBox
             // 
-            CenterOffsetTextBox.Location = new System.Drawing.Point(523, 194);
+            CenterOffsetTextBox.Location = new System.Drawing.Point(302, 194);
             CenterOffsetTextBox.Name = "CenterOffsetTextBox";
             CenterOffsetTextBox.Size = new System.Drawing.Size(100, 23);
             CenterOffsetTextBox.TabIndex = 12;
@@ -156,14 +164,14 @@
             CenterOffsetTextBox.Enter += CenterOffsetTextBox_Enter;
             CenterOffsetTextBox.Leave += CenterOffsetTextBox_Leave;
             // 
-            // CenterOffset
+            // CenterOffsetLabel
             // 
-            CenterOffset.AutoSize = true;
-            CenterOffset.Location = new System.Drawing.Point(535, 176);
-            CenterOffset.Name = "CenterOffset";
-            CenterOffset.Size = new System.Drawing.Size(77, 15);
-            CenterOffset.TabIndex = 13;
-            CenterOffset.Text = "Center Offset";
+            CenterOffsetLabel.AutoSize = true;
+            CenterOffsetLabel.Location = new System.Drawing.Point(313, 176);
+            CenterOffsetLabel.Name = "CenterOffsetLabel";
+            CenterOffsetLabel.Size = new System.Drawing.Size(77, 15);
+            CenterOffsetLabel.TabIndex = 13;
+            CenterOffsetLabel.Text = "Center Offset";
             // 
             // CSVPictureBox
             // 
@@ -207,7 +215,7 @@
             // 
             // WheelDiameterTextBox
             // 
-            WheelDiameterTextBox.Location = new System.Drawing.Point(647, 194);
+            WheelDiameterTextBox.Location = new System.Drawing.Point(638, 194);
             WheelDiameterTextBox.Name = "WheelDiameterTextBox";
             WheelDiameterTextBox.Size = new System.Drawing.Size(100, 23);
             WheelDiameterTextBox.TabIndex = 17;
@@ -244,10 +252,96 @@
             DXFViewerPanel.Size = new System.Drawing.Size(946, 178);
             DXFViewerPanel.TabIndex = 21;
             // 
+            // TypeComboBox
+            // 
+            TypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            TypeComboBox.FormattingEnabled = true;
+            TypeComboBox.Items.AddRange(new object[] { "Normal Processing", "Pocketing" });
+            TypeComboBox.Location = new System.Drawing.Point(61, 35);
+            TypeComboBox.Name = "TypeComboBox";
+            TypeComboBox.Size = new System.Drawing.Size(144, 23);
+            TypeComboBox.TabIndex = 22;
+            TypeComboBox.SelectedIndexChanged += TypeComboBox_SelectedIndexChanged;
+            // 
+            // MachiningTypeLabel
+            // 
+            MachiningTypeLabel.AutoSize = true;
+            MachiningTypeLabel.Location = new System.Drawing.Point(83, 17);
+            MachiningTypeLabel.Name = "MachiningTypeLabel";
+            MachiningTypeLabel.Size = new System.Drawing.Size(92, 15);
+            MachiningTypeLabel.TabIndex = 23;
+            MachiningTypeLabel.Text = "Machining Type";
+            // 
+            // CAxisLabel
+            // 
+            CAxisLabel.AutoSize = true;
+            CAxisLabel.Location = new System.Drawing.Point(532, 176);
+            CAxisLabel.Name = "CAxisLabel";
+            CAxisLabel.Size = new System.Drawing.Size(85, 15);
+            CAxisLabel.TabIndex = 24;
+            CAxisLabel.Text = "C Axis Position";
+            // 
+            // ThetaLabel
+            // 
+            ThetaLabel.AutoSize = true;
+            ThetaLabel.Location = new System.Drawing.Point(677, 176);
+            ThetaLabel.Name = "ThetaLabel";
+            ThetaLabel.Size = new System.Drawing.Size(37, 15);
+            ThetaLabel.TabIndex = 25;
+            ThetaLabel.Text = "Theta";
+            // 
+            // GrindingPositionComboBox
+            // 
+            GrindingPositionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            GrindingPositionComboBox.FormattingEnabled = true;
+            GrindingPositionComboBox.Items.AddRange(new object[] { "9 O'Clock", "6 O'Clock", "3 O'Clock" });
+            GrindingPositionComboBox.Location = new System.Drawing.Point(61, 79);
+            GrindingPositionComboBox.Name = "GrindingPositionComboBox";
+            GrindingPositionComboBox.Size = new System.Drawing.Size(144, 23);
+            GrindingPositionComboBox.TabIndex = 26;
+            GrindingPositionComboBox.SelectedIndexChanged += GrindingPositionComboBox_SelectedIndexChanged;
+            // 
+            // GrindingStyleLabel
+            // 
+            GrindingStyleLabel.AutoSize = true;
+            GrindingStyleLabel.Location = new System.Drawing.Point(81, 61);
+            GrindingStyleLabel.Name = "GrindingStyleLabel";
+            GrindingStyleLabel.Size = new System.Drawing.Size(99, 15);
+            GrindingStyleLabel.TabIndex = 27;
+            GrindingStyleLabel.Text = "Grinding Position";
+            // 
+            // StyleComboBox
+            // 
+            StyleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            StyleComboBox.FormattingEnabled = true;
+            StyleComboBox.Items.AddRange(new object[] { "Face", "Periphery" });
+            StyleComboBox.Location = new System.Drawing.Point(61, 123);
+            StyleComboBox.Name = "StyleComboBox";
+            StyleComboBox.Size = new System.Drawing.Size(144, 23);
+            StyleComboBox.TabIndex = 28;
+            StyleComboBox.SelectedIndexChanged += StyleComboBox_SelectedIndexChanged;
+            // 
+            // StyleLabel
+            // 
+            StyleLabel.AutoSize = true;
+            StyleLabel.Location = new System.Drawing.Point(108, 105);
+            StyleLabel.Name = "StyleLabel";
+            StyleLabel.Size = new System.Drawing.Size(32, 15);
+            StyleLabel.TabIndex = 29;
+            StyleLabel.Text = "Style";
+            // 
             // DXFtoCSV
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(StyleLabel);
+            Controls.Add(StyleComboBox);
+            Controls.Add(GrindingStyleLabel);
+            Controls.Add(GrindingPositionComboBox);
+            Controls.Add(ThetaLabel);
+            Controls.Add(CAxisLabel);
+            Controls.Add(MachiningTypeLabel);
+            Controls.Add(TypeComboBox);
             Controls.Add(DXFViewerPanel);
             Controls.Add(ReverseCheckBox);
             Controls.Add(WheelDiameterLabel);
@@ -255,7 +349,7 @@
             Controls.Add(AlternateRadioButton);
             Controls.Add(CSVdataGridView);
             Controls.Add(CSVPictureBox);
-            Controls.Add(CenterOffset);
+            Controls.Add(CenterOffsetLabel);
             Controls.Add(CenterOffsetTextBox);
             Controls.Add(SpeedLabel);
             Controls.Add(SpeedComboBox);
@@ -288,7 +382,7 @@
         private System.Windows.Forms.ComboBox SpeedComboBox;
         private System.Windows.Forms.Label SpeedLabel;
         private System.Windows.Forms.TextBox CenterOffsetTextBox;
-        private System.Windows.Forms.Label CenterOffset;
+        private System.Windows.Forms.Label CenterOffsetLabel;
         private System.Windows.Forms.PictureBox CSVPictureBox;
         private System.Windows.Forms.DataGridView CSVdataGridView;
         private System.Windows.Forms.RadioButton AlternateRadioButton;
@@ -296,5 +390,13 @@
         private System.Windows.Forms.Label WheelDiameterLabel;
         private System.Windows.Forms.CheckBox ReverseCheckBox;
         private System.Windows.Forms.Panel DXFViewerPanel;
+        private System.Windows.Forms.ComboBox TypeComboBox;
+        private System.Windows.Forms.Label MachiningTypeLabel;
+        private System.Windows.Forms.Label CAxisLabel;
+        private System.Windows.Forms.Label ThetaLabel;
+        private System.Windows.Forms.ComboBox GrindingPositionComboBox;
+        private System.Windows.Forms.Label GrindingStyleLabel;
+        private System.Windows.Forms.ComboBox StyleComboBox;
+        private System.Windows.Forms.Label StyleLabel;
     }
 }

@@ -45,7 +45,21 @@ namespace Vollmer_ToolBox
             NumericTextBoxHelper.Attach(CenterOffsetTextBox);
             NumericTextBoxHelper.Attach(WheelDiameterTextBox);
             NumericTextBoxHelper.Attach(ShearAngleBox);
-            
+            TypeComboBox.SelectedIndex = 0;
+            GrindingPositionComboBox.SelectedIndex = 0;
+            StyleComboBox.SelectedIndex = 0;
+
+        }
+
+        private void ClearAll()
+        {
+            previewPoints.Clear();
+            IncrementsTextBox.Clear();
+            CenterOffsetTextBox.Clear();
+            ShearAngleBox.Clear();
+            WheelDiameterTextBox.Clear();
+            CSVdataGridView.DataSource = null;
+            DXFViewerPanel.Invalidate();
         }
 
         // ============================================================
@@ -311,12 +325,12 @@ namespace Vollmer_ToolBox
                 string incrementText = IncrementsTextBox.Text.Trim();
 
                 // Try German format first
-                if (!double.TryParse(incrementText,NumberStyles.Float,CultureInfo.GetCultureInfo("de-DE"),out maxPointDistance))
+                if (!double.TryParse(incrementText, NumberStyles.Float, CultureInfo.GetCultureInfo("de-DE"), out maxPointDistance))
                 {
                     // If that failed, try English format
-                    if (!double.TryParse(incrementText,NumberStyles.Float,CultureInfo.InvariantCulture,out maxPointDistance))
+                    if (!double.TryParse(incrementText, NumberStyles.Float, CultureInfo.InvariantCulture, out maxPointDistance))
                     {
-                        MessageBox.Show("Please enter a valid Radius increment, such as 0.5.","Invalid Distance",
+                        MessageBox.Show("Please enter a valid Radius increment, such as 0.5.", "Invalid Distance",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
 
@@ -333,31 +347,38 @@ namespace Vollmer_ToolBox
 
                     return;
                 }
+                double wheelDiameter = 0;
+                double wheelRadius;
 
-                //---------------------------------
-                // Calculate Wheel Diameter to Radius
-                //---------------------------------
-                double wheelDiameter;
+                if (TypeComboBox.SelectedIndex == 1)
 
-                if (!double.TryParse(WheelDiameterTextBox.Text.Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out wheelDiameter))
                 {
-                    MessageBox.Show("Please enter a valid wheel diameter.", "Invalid Wheel Diameter",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
+                    //---------------------------------
+                    // Calculate Wheel Diameter to Radius
+                    //---------------------------------
+                    if (!double.TryParse(WheelDiameterTextBox.Text.Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out wheelDiameter))
+                    {
+                        MessageBox.Show("Please enter a valid wheel diameter.", "Invalid Wheel Diameter",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
 
-                    return;
+                        return;
+                    }
+
+                    if (wheelDiameter <= 0)
+                    {
+                        MessageBox.Show("Wheel diameter must be greater than zero.", "Invalid Wheel Diameter",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+
+                        return;
+                    }
+                    wheelRadius = wheelDiameter / 2.0;
                 }
-
-                if (wheelDiameter <= 0)
+                else
                 {
-                    MessageBox.Show("Wheel diameter must be greater than zero.", "Invalid Wheel Diameter",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
+                    wheelRadius = wheelDiameter;
                 }
-
-                double wheelRadius = wheelDiameter / 2.0;
 
 
 
@@ -407,7 +428,7 @@ namespace Vollmer_ToolBox
                     double arcLength = (Math.PI * radius * arcAngle) / 180.0;
 
 
-                    if (arcLength /2 <= maxPointDistance)
+                    if (arcLength / 2 <= maxPointDistance)
                     {
                         MessageBox.Show("Radius increments must be less than the radius circumference try a smaller radius increment", "Invalid Distance",
                             MessageBoxButtons.OK,
@@ -564,30 +585,15 @@ namespace Vollmer_ToolBox
                     double lastX = sorted.Last().Z;
                     double firstY;
                     double calculatedY;
-
-                    if (ReverseCheckBox.Checked)
-                    {
-                        firstY = sorted.First().Z + (p.X - lastX) * Math.Tan(angleRadians);
-                        calculatedY = p.Z;
-                        calculatedY = -firstY + centerOffset;
-                    }
-                    else
-                    {
-                        firstY = sorted.First().Z + centerOffset;
-                        calculatedY = p.Z;
-                        calculatedY = firstY - (p.X - firstX) * Math.Tan(angleRadians);
-                    }
-
                     double tangentAngle = p.TangentAngle;
+                    string z;
+                    string y;
+                    string r;
+                    string a;
+                    string feed;
+                    string c;
+                    string t;
 
-
-
-                    string z = p.Y.ToString(format, culture);
-                    string y = calculatedY.ToString(format, culture);
-                    string r = p.Radius.ToString(format, culture);
-                    string a = 0.00.ToString(format, culture);
-                    string feed = assignedValue.ToString(format, culture);
-                    string c = string.Empty;
 
                     if (ShearAngleBox.Text == "")
                     {
@@ -595,28 +601,90 @@ namespace Vollmer_ToolBox
                         ShearAngleBox.Text = "0";
                     }
 
-                    if (AlternateRadioButton.Checked)
+                    if (WheelDiameterTextBox.Text == "")
                     {
-                        double cValue = 180;
+                        WheelDiameterTextBox.Text = "0";
+                    }
 
-                        if (double.TryParse(ShearAngleBox.Text, NumberStyles.Float, culture, out shearAngle))
+                    if (TypeComboBox.SelectedIndex == 1)
+                    {
+                        if (ReverseCheckBox.Checked)
                         {
-                            cValue = (cValue + shearAngle);
+                            firstY = sorted.First().Z + (p.X - lastX) * Math.Tan(angleRadians);
+                            calculatedY = p.Z;
+                            calculatedY = -firstY + centerOffset;
+                        }
+                        else
+                        {
+                            firstY = sorted.First().Z + centerOffset;
+                            calculatedY = p.Z;
+                            calculatedY = firstY - (p.X - firstX) * Math.Tan(angleRadians);
                         }
 
-                        c = cValue.ToString(format, culture);
-                    }
-                    else
-                    {
+                        tangentAngle = p.TangentAngle;
 
-                        if (double.TryParse(ShearAngleBox.Text, NumberStyles.Float, culture, out double cValue))
+
+
+                        z = p.Y.ToString(format, culture);
+                        y = calculatedY.ToString(format, culture);
+                        r = p.Radius.ToString(format, culture);
+                        c = string.Empty;
+
+
+                        if (AlternateRadioButton.Checked)
                         {
+                            double cValue = 180;
+
+                            if (double.TryParse(ShearAngleBox.Text, NumberStyles.Float, culture, out shearAngle))
+                            {
+                                cValue = (cValue + shearAngle);
+                            }
+
                             c = cValue.ToString(format, culture);
                         }
+                        else
+                        {
+
+                            if (double.TryParse(ShearAngleBox.Text, NumberStyles.Float, culture, out double cValue))
+                            {
+                                c = cValue.ToString(format, culture);
+                            }
+                        }
+                        t = p.TangentAngle.ToString(format, culture);
                     }
 
-                    string t = p.TangentAngle.ToString(format, culture);
+                    else
+                    {
+                        c = ShearAngleBox.Text;
+                        t = WheelDiameterTextBox.Text;
+                        if (GrindingPositionComboBox.SelectedIndex != 1)
+                        {
+                            z = "0";
+                            if (GrindingPositionComboBox.SelectedIndex == 0 && StyleComboBox.SelectedIndex == 1)
+                            {
 
+                                y = (-p.Y).ToString(format, culture);
+
+                            }
+
+                            else
+                            {
+                                y = p.Y.ToString(format, culture);
+                            }
+
+
+                        }
+
+                        else
+                        {
+                            y = "0";
+                            z = p.Y.ToString(format, culture);
+                        }
+
+                    }
+
+                    a = 0.00.ToString(format, culture);
+                    feed = assignedValue.ToString(format, culture);
 
                     sb.AppendLine($"{y}{sep}{z}{sep}{x}{sep}{a}{sep}{c}{sep}{feed}{sep}{t}{sep}{a}");
 
@@ -719,29 +787,30 @@ namespace Vollmer_ToolBox
         private void CAxisTextBox_Leave(object sender, EventArgs e)
         {
             CSVPictureBox.Image = Properties.Resources.OpenProcedurePic;
-            if (double.TryParse(
-        ShearAngleBox.Text,
-        NumberStyles.Float,
-        CultureInfo.GetCultureInfo("de-DE"),
-        out double value))
+            if (double.TryParse(ShearAngleBox.Text, NumberStyles.Float, CultureInfo.GetCultureInfo("de-DE"), out double value))
             {
-                if (AlternateRadioButton1 && value > 20)
+                if (TypeComboBox.SelectedIndex == 1)
                 {
-                    MessageBox.Show(
-                        "The shear angle cannot be greater than 20 when Alternate is selected.",
-                        "Invalid Value",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    ShearAngleBox.Text = "20";
-                }
-                if (!AlternateRadioButton1 && value > 15)
-                {
-                    MessageBox.Show(
-                        "The shear angle cannot be greater than 15.",
-                        "Invalid Value",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-                    ShearAngleBox.Text = "15";
+
+                    if (AlternateRadioButton1 && value > 20)
+                    {
+                        MessageBox.Show(
+                            "The shear angle cannot be greater than 20 when Alternate is selected.",
+                            "Invalid Value",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        ShearAngleBox.Text = "20";
+                    }
+                    if (!AlternateRadioButton1 && value > 15)
+                    {
+                        MessageBox.Show(
+                            "The shear angle cannot be greater than 15.",
+                            "Invalid Value",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        ShearAngleBox.Text = "15";
+                    }
+
                 }
                 else
                 {
@@ -808,7 +877,7 @@ namespace Vollmer_ToolBox
             ReverseCheckBox.Checked = ReverseCheckBox1;
         }
 
-       private void SetupDXFPreviewPanel()
+        private void SetupDXFPreviewPanel()
         {
             DXFViewerPanel.BackColor = Color.White;
             DXFViewerPanel.BorderStyle = BorderStyle.FixedSingle;
@@ -1051,6 +1120,137 @@ namespace Vollmer_ToolBox
                     $"Points: {previewPoints.Count}";
 
                 g.DrawString(text, font, brush, 5, 5);
+            }
+        }
+
+        private void TypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 1. Get the text currently selected in the ComboBox
+            string selectedText = TypeComboBox.Text;
+
+
+            // 2. Declare a variable to hold your integer
+            int assignedValue = 0;
+
+            // 3. Match the string to your custom integer values
+            switch (selectedText)
+            {
+                case "Normal Processing":
+                    assignedValue = 1;
+                    break;
+
+                case "Pocketing":
+                    assignedValue = 2;
+                    break;
+
+                default:
+                    assignedValue = 1; // Fallback default
+                    TypeComboBox.Text = "Normal Processing";
+                    break;
+            }
+
+            if (selectedText == "Normal Processing")
+            {
+                CAxisLabel.Visible = true;
+                ShearAngleLabel.Visible = false;
+                CenterOffsetTextBox.Visible = false;
+                CenterOffsetLabel.Visible = false;
+                ThetaLabel.Visible = true;
+                WheelDiameterLabel.Visible = false;
+                AlternateRadioButton.Visible = false;
+                GrindingPositionComboBox.Visible = true;
+                GrindingStyleLabel.Visible = true;
+                StyleComboBox.Visible = true;
+                StyleLabel.Visible = true;
+                ClearAll();
+
+
+
+            }
+            else
+            {
+                CAxisLabel.Visible = false;
+                ShearAngleLabel.Visible = true;
+                CenterOffsetTextBox.Visible = true;
+                CenterOffsetLabel.Visible = true;
+                ThetaLabel.Visible = false;
+                WheelDiameterLabel.Visible = true;
+                AlternateRadioButton.Visible = true;
+                GrindingPositionComboBox.Visible = false;
+                GrindingStyleLabel.Visible = false;
+                StyleComboBox.Visible = false;
+                StyleLabel.Visible = false;
+                ClearAll();
+
+            }
+        }
+
+        private void StyleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedText = StyleComboBox.Text;
+
+
+            // 2. Declare a variable to hold your integer
+            int assignedValue = 0;
+
+            // 3. Match the string to your custom integer values
+            switch (selectedText)
+            {
+                case "Face":
+                    assignedValue = 1;
+                    break;
+
+                case "Periphery":
+                    assignedValue = 2;
+                    break;
+
+                default:
+                    assignedValue = 1; // Fallback default
+                    StyleComboBox.Text = "Face";
+                    break;
+            }
+        }
+
+        private void GrindingPositionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 1. Get the text currently selected in the ComboBox
+            string selectedText = GrindingPositionComboBox.Text;
+
+
+            // 2. Declare a variable to hold your integer
+            int assignedValue = 0;
+
+            // 3. Match the string to your custom integer values
+            switch (selectedText)
+            {
+                case "9 O'Clock":
+                    assignedValue = 1;
+                    break;
+
+                case "6 O'Clock":
+                    assignedValue = 2;
+                    break;
+
+                case "3 O'Clock":
+                    assignedValue = 2;
+                    break;
+
+                default:
+                    assignedValue = 1; // Fallback default
+                    GrindingPositionComboBox.Text = "9 O'Clock";
+                    break;
+            }
+
+            if (selectedText == "6 O'Clock")
+            {
+                StyleComboBox.Visible = false;
+                StyleLabel.Visible = false;
+                StyleComboBox.Text = "Periphery";
+            }
+            else
+            {
+                StyleComboBox.Visible = true;
+                StyleLabel.Visible = true;
             }
         }
     }
